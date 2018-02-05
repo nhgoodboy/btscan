@@ -9,7 +9,7 @@ module.exports = {
     },
     'page': {
         'homePage': '/pages/btscan/index/index.js',
-        // 'homePage': '/pages/demo/index.js',
+        // 'homePage': '/pages/demo/index.js', //demo页面
         'mediatorPage': '/mediator/index.js',
         'navBarColor': '#1DA1F2',
         'navItemColor': '#ffffff'

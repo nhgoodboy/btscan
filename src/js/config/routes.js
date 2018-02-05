@@ -6,20 +6,24 @@
 
 export default {
     //btscan
+    'iBeacon.home':{
+        // title: '首页',
+        url: '/pages/btscan/home/home.js',
+    },
     'iBeacon.history-results':{
-        title: '历史结果',
+        // title: '历史结果',
         url: '/pages/btscan/history-results/history-results.js',
     },
     'iBeacon.manage-devices':{
-        title: '设备管理',
+        // title: '设备管理',
         url:"/pages/btscan/manage-devices/manage-devices.js",
     },
     'iBeacon.detail-list':{
-        title: '详细列表',
+        // title: '详细列表',
         url:"/pages/btscan/detail-list/detail-list.js",
     },
     'test':{
-        title: '测试页',
+        // title: '测试页',
         url:"/pages/btscan/index/test.js",
     },
 

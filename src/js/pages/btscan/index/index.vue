@@ -14,6 +14,10 @@
             <div class="butt" @click="go('iBeacon.history-results')">
                 <text class="text32 colorWhite">历史记录</text>
             </div>
+
+            <div class="butt" @click="go('iBeacon.home')">
+                <text class="text32 colorWhite">home</text>
+            </div>
         </div>
 
         <div class="tabDiv">

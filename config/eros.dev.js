@@ -3,6 +3,7 @@ module.exports = {
     'exports': [
         //btscan
         "js/pages/btscan/index/test.js",
+        "js/pages/btscan/home/home.vue",
         "js/pages/btscan/index/index.vue",
         "js/pages/btscan/history-results/history-results.vue",
         "js/pages/btscan/manage-devices/manage-devices.vue",

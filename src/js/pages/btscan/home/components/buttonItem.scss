@@ -1,0 +1,21 @@
+
+
+.box {
+  width: 500px;
+  height: 120px;
+  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+  background-color: #1da1f2;
+  border-radius: 12px;
+}
+
+.box:active {
+  background-color: #1db0b8;
+}
+
+.title {
+  color: black;
+  font-size: 36px;
+  text-align: center;
+}
