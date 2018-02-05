@@ -1,7 +1,68 @@
 
-
-
-
-.box {
-
+.topTextDiv {
+  height: 120px;
+  width: 750px;
+  padding-bottom: 20px;
 }
+
+.firstDiv{
+  height: 100px;
+  margin-left: 30px;
+  margin-right: 30px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.leftDiv{
+  height: 100px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.clearListDiv{
+  height: 80px;
+  width: 250px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #1db0b8;
+}
+
+.clearListDiv:active{
+  height: 80px;
+  width: 250px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #16878d;
+}
+
+.clearIcon{
+  font-family: btscanIcon;
+  color: white;
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.text32 {
+  font-size: 32px;
+}
+
+.text36 {
+  font-size: 36px;
+}
+
+.text80 {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 65px;
+}
+
+.colorWhite {
+  color: white;
+}
+
