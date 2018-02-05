@@ -16,6 +16,19 @@
 
         <list-top></list-top>
 
+        <div class="bottomFirstDiv">
+            <div class="bottomLeftDiv">
+                <text class="countIcon">&#xe612;</text>
+                <text class="text32">已确认清点 </text>
+                <text class="text36">0</text>
+                <text class="text32"> 个设备</text>
+            </div>
+            <div class="bottomRightDiv" @click="goToCommitView">
+                <text class="text32">去更改/提交</text>
+                <text class="goIcon">&#xe615;</text>
+            </div>
+        </div>
+
         <scanButton></scanButton>
     </div>
 

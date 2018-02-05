@@ -66,3 +66,42 @@
   color: white;
 }
 
+.bottomFirstDiv{
+  position: absolute;
+  bottom: 120px;
+  left: 0px;
+  height: 90px;
+  width: 750px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 10px;
+  background-color: gainsboro;
+}
+
+.bottomLeftDiv{
+  height: 90px;
+  align-items: center;
+  flex-direction: row;
+}
+
+.bottomRightDiv{
+  height: 90px;
+  align-items: center;
+  flex-direction: row;
+}
+
+.countIcon{
+  font-family: btscanIcon;
+  color: black;
+  font-size: 50px;
+  margin-right: 10px;
+}
+
+.goIcon{
+  font-family: btscanIcon;
+  color: gray;
+  font-size: 40px;
+  margin-left: 10px;
+}
