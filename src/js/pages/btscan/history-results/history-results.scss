@@ -1,0 +1,148 @@
+
+.text30 {
+font-size: 30px;
+}
+
+.buttonDiv {
+height: 100px;
+flex-direction: row;
+align-items: center;
+margin-left: 20px;
+}
+
+.button {
+margin-left: 10px;
+  margin-right: 10px;
+height: 70px;
+width: 150px;
+background-color: #1db0b8;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+}
+
+.button:active{
+  background-color: #16878d;
+}
+
+.titleText {
+font-size: 40px;
+color: white;
+}
+
+.navi-title {
+align-items: center;
+}
+
+.titleDiv {
+height: 90px;
+background-color: #1db0b8;
+align-items: center;
+justify-content: center;
+}
+
+.returnIcon{
+font-family: btscanIcon;
+font-size: 45px;
+position: absolute;
+left: 0px;
+top: 20px;
+color: white;
+}
+.colorWhite{
+color: white;
+}
+
+
+.search-feild {
+margin-left: 20px;
+padding-left: 10px;
+width: 270px;
+height: 70px;
+color: black;
+border-width: 1px;
+border-radius: 10px;
+}
+.findIcon{
+font-family: btscanIcon;
+font-size: 46px;
+color: whitesmoke;
+} 
+.findButtonDiv{
+margin-right: 30px;
+margin-left: 10px;
+height: 70px;
+width: 70px;
+background-color:#1db0b8;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+}
+.findButtonDiv:active {
+background-color: #16878d;
+}
+.listHead{
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+height: 90px;
+background-color: #c1c1c1;
+}
+.taskName {
+font-size: 35px;
+margin-left: 30px
+}
+.taskTime {
+font-size: 35px;
+margin-left: 200px
+}
+.devCount {
+font-size: 35px;
+margin-left: 95px
+}
+.listBox{
+flex: 1;
+}
+
+.taskNameDiv{
+width:340px;
+}
+.taskTimeDiv{
+width:200px;
+}
+.DevCountDiv{
+width:50px;
+margin-left:40px;
+}
+.cellDiv1{
+margin-left:30px;
+height: 80px;
+align-items: center;
+flex-direction: row;
+}
+.text30 {
+font-size: 30px;
+}
+
+.copyIcon{
+font-family: btscanIcon;
+font-size: 50px;
+color: black;
+margin-left: 10px;
+}
+.copyIcon:active{
+font-family: btscanIcon;
+background-color: #c1c1c1;
+font-size: 50px;
+color: black;
+margin-left: 10px;
+}
+
+.cricleDev{
+height: 80px;
+align-items: center;
+border-bottom-width: 2px;
+border-bottom-style:dashed;
+border-bottom-color: #8a8a8a;
+flex-direction: row;
+}

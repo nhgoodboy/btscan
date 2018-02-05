@@ -5,6 +5,25 @@
 //  dev.json 的 exports 需要打包的js地址，填入src的需要被打包成js bundle的地址   从src开始
 
 export default {
+    //btscan
+    'iBeacon.history-results':{
+        title: '历史结果',
+        url: '/pages/btscan/history-results/history-results.js',
+    },
+    'iBeacon.manage-devices':{
+        title: '设备管理',
+        url:"/pages/btscan/manage-devices/manage-devices.js",
+    },
+    'iBeacon.detail-list':{
+        title: '详细列表',
+        url:"/pages/btscan/detail-list/detail-list.js",
+    },
+    'test':{
+        title: '测试页',
+        url:"/pages/btscan/index/test.js",
+    },
+
+    //original
     'demo': {
         title: 'weex-eros demo',
         url: '/pages/demo/index.js'

@@ -1,6 +1,13 @@
 // appBoard，mediator 不建议进行修改 如果修改了 也请对应修改
 module.exports = {
     'exports': [
+        //btscan
+        "js/pages/btscan/index/test.js",
+        "js/pages/btscan/index/index.vue",
+        "js/pages/btscan/history-results/history-results.vue",
+        "js/pages/btscan/manage-devices/manage-devices.vue",
+        "js/pages/btscan/detail-list/detail-list.vue",
+
         // appBoard
         'js/config/index.js',
         // mediator

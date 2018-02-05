@@ -3,6 +3,14 @@ import Widget from 'Widget'
 import apis from './apis'
 import routes from './routes'
 
+
+//添加iconfont字体规则
+let domModule = weex.requireModule("dom");
+domModule.addRule('fontFace', {
+    'fontFamily': "btscanIcon",
+    'src': "url('bmlocal://iconfont/iconfont.ttf')"
+});
+
 new Widget({
     router: {
         /**
@@ -38,8 +46,8 @@ new Widget({
         responseHandler (options, resData, resolve, reject) {
             const { status, errorMsg, data } = resData
             if (status !== 200) {
-                console.log(`invoke error status: ${status}`)
-                console.log(`invoke error message: ${errorMsg}`)
+                console.log(`invoke error status: ${status}`);
+                console.log(`invoke error message: ${errorMsg}`);
                 reject(resData)
             } else {
                 // 自定义请求逻辑
