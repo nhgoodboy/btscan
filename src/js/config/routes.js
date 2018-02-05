@@ -6,10 +6,29 @@
 
 export default {
     //btscan
-    'iBeacon.home':{
-        // title: '首页',
+    'home':{
         url: '/pages/btscan/home/home.js',
     },
+    'devices-check':{
+        url: '/pages/btscan/devices-check/devices-check.js',
+    },
+    'devices-search':{
+        url: '/pages/btscan/devices-search/devices-search.js',
+    },
+    'devices-management':{
+        url: '/pages/btscan/devices-management/devices-management.js',
+    },
+    'history-records':{
+        url: '/pages/btscan/history-records/history-records.js',
+    },
+    'about':{
+        url: '/pages/btscan/about/about.js',
+    },
+
+    'index':{
+        url: '/pages/btscan/index/index.js',
+    },
+
     'iBeacon.history-results':{
         // title: '历史结果',
         url: '/pages/btscan/history-results/history-results.js',

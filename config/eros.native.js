@@ -8,7 +8,7 @@ module.exports = {
         'iOS': '1.0.0'
     },
     'page': {
-        'homePage': '/pages/btscan/index/index.js',
+        'homePage': '/pages/btscan/home/home.js',
         // 'homePage': '/pages/demo/index.js', //demo页面
         'mediatorPage': '/mediator/index.js',
         'navBarColor': '#1DA1F2',

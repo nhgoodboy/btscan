@@ -27,4 +27,4 @@
 
 </script>
 
-<style lang="sass" src="./about.scss" scoped></style>
+<style lang="sass" src="./devices-management.scss" scoped></style>

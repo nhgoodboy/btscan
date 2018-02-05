@@ -2,8 +2,14 @@
 module.exports = {
     'exports': [
         //btscan
-        "js/pages/btscan/index/test.js",
         "js/pages/btscan/home/home.vue",
+        "js/pages/btscan/devices-check/devices-check.vue",
+        "js/pages/btscan/devices-search/devices-search.vue",
+        "js/pages/btscan/devices-management/devices-management.vue",
+        "js/pages/btscan/history-records/history-records.vue",
+        "js/pages/btscan/about/about.vue",
+
+        "js/pages/btscan/index/test.js",
         "js/pages/btscan/index/index.vue",
         "js/pages/btscan/history-results/history-results.vue",
         "js/pages/btscan/manage-devices/manage-devices.vue",
