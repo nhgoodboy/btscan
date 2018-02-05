@@ -21,7 +21,7 @@
 
         </div>
 
-        <div class="listHead"> 
+        <div class="listHead">
                 <text class="taskName ">设备名称</text>
                 <text class="taskTime " >清点时间</text>
                 <text class="devCount " >设备数</text>
@@ -126,6 +126,8 @@
         //原来then里面也可以调用this的
         this.page.$storage.get('deviceMap').then(resData => {
             this.map = resData?resData:{};
+        }, error =>{
+            this.map = error.data?error.data:{};
         })
     }
     DeviceMap.prototype.save = function(){
@@ -270,7 +272,7 @@
                         distance: 1,
                         elect: 90
                     },
-                   
+
                 ],
             },
         },
@@ -384,7 +386,7 @@
                 // modal.toast({
                 //     message:'30天前',
                 //     duration:0.5
-                // });                
+                // });
 //                var lists = this.taskList;
 //                var showItem = [];
 //                for (var i = 0; i < lists.length; i++) {

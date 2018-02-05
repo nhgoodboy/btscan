@@ -148,6 +148,8 @@
         }
     }
     DeviceMap.prototype.put = function (device) {
+        this.alert('123');
+
         if(!this.containsKey(device.mac)){
             this.map[device.mac] = device;
             return '';
@@ -169,6 +171,10 @@
         //原来then里面也可以调用this的
         this.page.$storage.get('deviceMap').then(resData => {
             this.map = resData?resData:{};
+            //fly：仅仅这个页面才能这样使用
+            this.page.showDevLists = this.toList();
+        }, error =>{
+            this.map = error.data?error.data:{};
             //fly：仅仅这个页面才能这样使用
             this.page.showDevLists = this.toList();
         })
@@ -468,8 +474,17 @@
                     deviceMap.alert("请输入正确的设备标签,正确的标签应该为12位，有可能你看到的是6个两位英文字母组成的以“：”分隔的序列号");
                     return;
                 }
+                this.$notice.alert({
+                    message: "1"
+                })
                 deviceMap.put(new Device(this.devLabel, this.devName));
+                this.$notice.alert({
+                    message: "2"
+                })
                 deviceMap.save();
+                this.$notice.alert({
+                    message: "3"
+                })
                 this.showDevLists = deviceMap.toList();
                 this.isShow = false;
             },

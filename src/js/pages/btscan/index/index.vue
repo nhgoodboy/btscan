@@ -24,7 +24,7 @@
                 <text class="text36">设备搜寻</text>
             </div>
         </div>
- 
+
         <div v-if="tab.check === 0 && scanView">
             <div class="middleTextDiv">
                 <div class="firstDiv">
@@ -242,6 +242,8 @@
         //原来then里面也可以调用this的
         this.page.$storage.get('deviceMap').then(resData => {
             this.map = resData?resData:{};
+        }, error =>{
+            this.map = error.data?error.data:{};
         })
 
     }
@@ -489,38 +491,13 @@
                 var _this = this;
                 scanUtil.initScanUtil(function (resData) {})
             },
-            
+
             go(name) {
                 this.$router.open({name});
             },
-            
+
             startScan: function () {
                 var _this = this;
-//                测试数据
-//                _this.buttonState = false;
-//                var tempMap = {};
-//
-//                for(let i=0; i<10; i++){
-//                    var tempItem = {mac: undefined, alias: undefined, distance: undefined, isFind: undefined, battery: undefined};
-//                    tempItem.mac = '19180e1633'+(i>=10?i:'e'+i);
-//                    tempItem.alias = deviceMap.getAliasByMac(tempItem.mac);              //deviceMap.getAliasByMac(tempItem.mac);
-//                    tempItem.distance = '0'+i;
-//                    tempItem.isFind = i%2 ? true : false;
-//                    tempItem.battery = 100 - i;
-//                    if (tempItem.alias.indexOf(_this.filterName) >= 0) {
-//                        tempMap[tempItem.mac] = tempItem;
-//                    }else{
-//                        tempMap[tempItem.mac] = tempItem;
-//                    }
-//                }
-//                if(_this.checkedArray.length > 0){
-//                    for (var index in _this.checkedArray){
-//                        if(tempMap[_this.checkedArray[index].mac]){
-//                            tempMap[_this.checkedArray[index].mac].checked = true;
-//                        }
-//                    }
-//                }
-//                _this.devArray = tempMap;
 
                 scanUtil.checkBluetooth(function(isTrue){
                     if(isTrue){
