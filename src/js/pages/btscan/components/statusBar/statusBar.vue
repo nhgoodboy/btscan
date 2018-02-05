@@ -1,7 +1,5 @@
 <template>
-    <div>
-    </div>
-
+    <div :style="{height: statusBarHeight, backgroudColor: backgroudColor}"></div>
 </template>
 
 <script>
@@ -10,12 +8,9 @@
     export default {
         data() {
             return {
-
+                statusBarHeight: WxEnvironment.statusBarHeight,
+                backgroudColor: 'yellow'
             }
-        },
-
-        components: {
-
         },
 
         mounted() {
@@ -26,8 +21,5 @@
 
         }
     }
-
-
 </script>
 
-<style lang="sass" src="./about.scss" scoped></style>

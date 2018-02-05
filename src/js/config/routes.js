@@ -10,18 +10,23 @@ export default {
         url: '/pages/btscan/home/home.js',
     },
     'devices-check':{
+        title: '设备清点',
         url: '/pages/btscan/devices-check/devices-check.js',
     },
     'devices-search':{
+        title: '设备搜寻',
         url: '/pages/btscan/devices-search/devices-search.js',
     },
     'devices-management':{
+        title: '设备管理',
         url: '/pages/btscan/devices-management/devices-management.js',
     },
     'history-records':{
+        title: '历史记录',
         url: '/pages/btscan/history-records/history-records.js',
     },
     'about':{
+        title: '关于',
         url: '/pages/btscan/about/about.js',
     },
 
