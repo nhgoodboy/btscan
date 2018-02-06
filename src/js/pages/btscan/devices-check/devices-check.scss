@@ -1,13 +1,12 @@
 @import "../../../css/btscanBase";
 
 .topTextDiv {
-  height: 120px;
   width: 750px;
   padding-bottom: 20px;
 }
 
 .firstDiv{
-  height: 100px;
+  height: 90px;
   margin-left: 30px;
   margin-right: 30px;
   flex-direction: row;
@@ -23,22 +22,16 @@
 }
 
 .clearListDiv{
-  height: 80px;
-  width: 250px;
+  height: 70px;
+  width: 220px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: $border-radius;
   background-color: $base-color;
 }
 
 .clearListDiv:active{
-  height: 80px;
-  width: 250px;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
   background-color: $deep-base-color;
 }
 
@@ -55,10 +48,6 @@
   line-height: 65px;
 }
 
-.colorWhite {
-  color: white;
-}
-
 .bottomFirstDiv{
   height: 90px;
   width: 750px;
@@ -66,7 +55,7 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 30px;
-  padding-right: 10px;
+  padding-right: 20px;
   background-color: gainsboro;
 }
 
@@ -96,12 +85,8 @@
 .goIcon{
   font-family: btscanIcon;
   color: gray;
-  font-size: $font-size-big;
+  font-size: $font-size-normal;
   margin-left: 10px;
-}
-
-.listBox{
-  flex: 1;
 }
 
 .cellInnerDiv{

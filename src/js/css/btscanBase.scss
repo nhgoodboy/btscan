@@ -8,6 +8,9 @@ $font-size-normal: 36px;
 $font-size-big:    40px;
 $font-size-80:     80px;
 
+//border-radius
+$border-radius:    12px;
+
 
 .text-normal {
   font-size: $font-size-normal;
@@ -21,3 +24,10 @@ $font-size-80:     80px;
   font-size: $font-size-big;
 }
 
+.colorWhite{
+  color: white;
+}
+
+.list{
+  flex: 1;
+}

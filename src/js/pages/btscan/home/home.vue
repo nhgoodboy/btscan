@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import "Config";
+    if (process.env.NODE_ENV === 'development') require('Config');
     import { goTo } from "../utils/utils";
     import buttonItem from './components/buttonItem';
 

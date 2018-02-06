@@ -1,26 +1,101 @@
 <template>
-    <div class="box">
-        <text></text>
-    </div>
+    <div>
+        <div class="taskTopDiv">
+            <div class="taskTopFirstDiv">
+                <text class="text-small">任务名称</text>
+                <input class="taskInput" type="text" v-model="taskName" maxlength="20"/>
+            </div>
+            <div class="taskTopSecondDiv">
+                <text class="text-small">设备清单</text>
+                <div class="countRightDiv">
+                    <text class="text-small">共计 {{checkedArray.length}} 项</text>
+                </div>
+            </div>
+        </div>
 
+        <list-top></list-top>
+
+        <list class="list">
+            <cell v-for="(item,index) in checkedArray" :key="index">
+                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
+                    <div class="cellLeftDiv">
+                        <text class="devIcon">&#xe600;</text>
+                        <text class="text-small width360">{{item.alias}}</text>
+                    </div>
+                    <div class="cellRightDiv">
+                        <text class="text-small">{{computeDistance(item.distance)}}</text>
+                        <text class="text-small">{{item.battery}}%</text>
+                        <text class="deleteIcon" @click="deleteCheckedDev(checkedArray.indexOf(item))">&#xe634;</text>
+                    </div>
+                </div>
+            </cell>
+        </list>
+
+
+        <div class="button-box">
+            <text class="text-normal colorWhite">确认提交</text>
+        </div>
+    </div>
 </template>
 
 <script>
-    import "Config";
+    if (process.env.NODE_ENV === 'development') require('Config');
+
+    import { alert } from "../../utils/utils";
+    import { listTop } from '../../components/index';
 
     export default {
         data() {
             return {
-
+                taskName: '',
+                checkedArray: [],
             }
+        },
+
+        bmRouter: {
+            viewDidAppear(params) {
+                // alert(this, params);
+                this.checkedArray = params;
+            }
+        },
+
+        components: {
+            listTop
         },
 
         mounted() {
 
+
         },
 
         methods: {
+            computeDistance(distance) {
+                if(distance > 10){
+                    return '>10m / ';
+                }else if(distance < 1){
+                    return '<1m / ';
+                }else{
+                    return distance + 'm / ';
+                }
+            },
 
+            deleteCheckedDev(index){
+                // var _this = this;
+                // this.$notice.confirm({
+                //     title: '温馨提示',
+                //     message: '是否确认删除？',
+                //     okTitle: '是',
+                //     cancelTitle: '否',
+                //     okCallback() {
+                //         if(_this.devArray[_this.checkedArray[index].mac]){
+                //             _this.devArray[_this.checkedArray[index].mac].checked = false;
+                //         }
+                //
+                //         _this.checkedArray.splice(index, 1);
+                //     },
+                //     cancelCallback() {}
+                // })
+            },
         }
     }
 

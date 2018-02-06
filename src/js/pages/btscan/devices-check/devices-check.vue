@@ -16,7 +16,7 @@
 
         <list-top></list-top>
 
-        <list class="listBox">
+        <list class="list">
             <cell v-for="(item, index) in devicesArray" :key="index">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
                     <div class="cellLeftDiv">
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-    import "Config";
+    if (process.env.NODE_ENV === 'development') require('Config');
     import { listTop, scanButton } from '../components/index';
     import { goTo, alert } from "../utils/utils";
 
@@ -230,7 +230,7 @@
 
         methods: {
             goTo(name) {
-                goTo(this, name);
+                goTo(this, name, this.checkedArray);
             },
 
             computeDistance(distance) {

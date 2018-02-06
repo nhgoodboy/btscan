@@ -1,5 +1,89 @@
+@import "../../../../css/btscanBase";
+
+.taskTopDiv{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.taskTopFirstDiv{
+  height: 120px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskInput{
+  width: 520px;
+  height: 70px;
+  border-radius: 12px;
+  border-width: 2px;
+  padding: 10px;
+  color: black;
+  border-color: gray;
+}
+
+.taskTopSecondDiv{
+  height: 60px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countRightDiv{
+  flex-direction: row;
+}
+
+.deleteIcon{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+}
 
 
-.box {
+.cellInnerDiv{
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 90px;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
+.cellLeftDiv{
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+}
+
+.devIcon{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+  margin-right: 20px;
+  opacity: 1;
+}
+
+.devIconElse{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+  margin-right: 20px;
+  opacity: 0.2;
+}
+
+.cellRightDiv{
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+}
+
+.button-box{
+  height: 100px;
+  width: 750px;
+  background-color: $base-color;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-box:active {
+  background-color: $deep-base-color;
 }

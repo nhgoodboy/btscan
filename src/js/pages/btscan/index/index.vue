@@ -166,7 +166,7 @@
 
 
 <script>
-    import "Config";
+    if (process.env.NODE_ENV === 'development') require('Config');
 
     var scanUtil = weex.requireModule("scanUtil");
     //——————数据存储类定义——————
