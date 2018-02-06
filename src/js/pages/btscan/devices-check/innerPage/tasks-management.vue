@@ -32,7 +32,7 @@
         </list>
 
 
-        <div class="button-box">
+        <div class="button-box" @click="commit('devices-management')">
             <text class="text-normal colorWhite">确认提交</text>
         </div>
     </div>
@@ -41,7 +41,7 @@
 <script>
     if (process.env.NODE_ENV === 'development') require('Config');
 
-    import { alert } from "../../utils/utils";
+    import { alert, formatDateTime, goTo } from "../../utils/utils";
     import { listTop } from '../../components/index';
 
     let _this;
@@ -51,7 +51,7 @@
             return {
                 taskName: '',
                 checkedDevices: {},
-                devices: {}
+                taskDate: {}
             }
         },
 
@@ -67,7 +67,7 @@
 
         mounted() {
             _this = this;
-
+            this.taskName = formatDateTime(new Date());
         },
 
         methods: {
@@ -94,15 +94,16 @@
                     okCallback() {
                         Vue.delete(_this.checkedDevices, key);
                         _this.$event.emit('updateDevices', key);
-                        // if(_this.devArray[_this.checkedArray[index].mac]){
-                        //     _this.devArray[_this.checkedArray[index].mac].checked = false;
-                        // }
-                        //
-                        // _this.checkedArray.splice(index, 1);
                     },
                     cancelCallback() {}
                 })
             },
+
+            commit(name) {
+                this.taskDate.taskName = this.taskName;
+                this.taskDate.devices = this.checkedDevices;
+                // goTo(this, name, this.taskDate);
+            }
         }
     }
 
