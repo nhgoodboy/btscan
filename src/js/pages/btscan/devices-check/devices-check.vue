@@ -3,13 +3,13 @@
         <div class="topTextDiv">
             <div class="firstDiv">
                 <div class="leftDiv">
-                    <text class="text36">已发现 </text>
-                    <text class="text80">0</text>
-                    <text class="text32"> 个设备</text>
+                    <text class="text-normal">已发现 </text>
+                    <text class="text-80">0</text>
+                    <text class="text-small"> 个设备</text>
                 </div>
                 <div class="clearListDiv" @click="clearList">
                     <text class="clearIcon">&#xe61d;</text>
-                    <text class="text32 colorWhite">清空列表</text>
+                    <text class="text-small colorWhite">清空列表</text>
                 </div>
             </div>
         </div>
@@ -21,12 +21,13 @@
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
                     <div class="cellLeftDiv">
                         <text :class="[item.isFind ? 'devIcon' : 'devIconElse']">&#xe600;</text>
-                        <text class="text32 width360">{{item.alias}}</text>
+                        <text class="text-small width360">{{item.alias}}</text>
                     </div>
                     <div class="cellRightDiv">
-                        <text v-if="item.distance <= 10" class="text32">{{item.distance}}m / </text>
-                        <text class="text32" v-else>>10m / </text>
-                        <text class="text32">{{item.battery}}%</text>
+                        <text v-if="item.distance <= 10 && item.distance >= 1" class="text-small">{{item.distance}}m / </text>
+                        <text class="text-small" v-else-if="item.distance < 1">10m / </text>
+                        <text class="text-small" v-else-if="item.distance < 1">10m / </text>
+                        <text class="text-small">{{item.battery}}%</text>
                         <text :class="[item.checked ? 'addIconCheck' : 'addIcon']" @click="pushCheckedArray(item)">&#xe632;</text>
                     </div>
                 </div>
@@ -36,12 +37,12 @@
         <div class="bottomFirstDiv">
             <div class="bottomLeftDiv">
                 <text class="countIcon">&#xe612;</text>
-                <text class="text32">已确认清点 </text>
-                <text class="text36">0</text>
-                <text class="text32"> 个设备</text>
+                <text class="text-small">已确认清点 </text>
+                <text class="text-normal">0</text>
+                <text class="text-small"> 个设备</text>
             </div>
             <div class="bottomRightDiv" @click="goToCommitView">
-                <text class="text32">去更改/提交</text>
+                <text class="text-small">去更改/提交</text>
                 <text class="goIcon">&#xe615;</text>
             </div>
         </div>
@@ -198,9 +199,9 @@
                 devicesArray: [{isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: false, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: true},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
