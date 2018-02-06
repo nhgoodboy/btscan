@@ -16,7 +16,8 @@
 
 <script>
     import "Config";
-    import * as buttonItem from './components/buttonItem';
+    import { goTo } from "../utils/utils";
+    import buttonItem from './components/buttonItem';
 
     export default {
         data() {
@@ -35,13 +36,8 @@
 
         methods: {
             goTo(name) {
-                this.$router.open({
-                    name: name,
-                    type: 'PUSH',
-                })
+                goTo(this, name);
             },
-
-
         }
     }
 

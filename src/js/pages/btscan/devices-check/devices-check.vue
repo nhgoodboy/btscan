@@ -36,10 +36,10 @@
             <div class="bottomLeftDiv">
                 <text class="countIcon">&#xe612;</text>
                 <text class="text-small">已确认清点 </text>
-                <text class="text-normal">0</text>
+                <text class="text-normal">{{checkedArray.length}}</text>
                 <text class="text-small"> 个设备</text>
             </div>
-            <div class="bottomRightDiv" @click="goToCommitView">
+            <div class="bottomRightDiv" @click="goTo('tasks-management')">
                 <text class="text-small">去更改/提交</text>
                 <text class="goIcon">&#xe615;</text>
             </div>
@@ -53,6 +53,7 @@
 <script>
     import "Config";
     import { listTop, scanButton } from '../components/index';
+    import { goTo, alert } from "../utils/utils";
 
     const scanUtil = weex.requireModule("scanUtil");
 
@@ -194,12 +195,13 @@
         data() {
             return {
                 scanButtonStatus: true,
+                checkedArray: [],
                 devicesArray: [{isFind: true, alias: '1', distance: 11, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 0.2, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: false, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 100, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: true},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
@@ -227,6 +229,10 @@
         },
 
         methods: {
+            goTo(name) {
+                goTo(this, name);
+            },
+
             computeDistance(distance) {
                 if(distance > 10){
                     return '>10m / ';
@@ -238,9 +244,6 @@
             },
 
             startScanOrStop() {
-                // this.$notice.alert({
-                //     message:  "asd"
-                // })
                 if(this.scanButtonStatus) {
                     this.startScan();
                 }else {
@@ -249,15 +252,22 @@
             },
 
             clearList(){
-
+                scanUtil.clearList((resData) => {
+                    if (resData) {
+                        this.devicesArray = [];
+                        this.$notice.toast({
+                            'message': '列表已清空！'
+                        })
+                    }
+                })
             },
 
             pushCheckedArray(item){
-                // if(!item.checked) {
-                //     var tempItem = JSON.stringify(item);  //json对象转json字符串
-                //     this.checkedArray.push(JSON.parse(tempItem));  //json字符串转json对象
-                //     item.checked = true;
-                // }
+                if(!item.checked) {
+                    let tempItem = JSON.stringify(item);  //json对象转json字符串
+                    this.checkedArray.push(JSON.parse(tempItem));  //json字符串转json对象
+                    item.checked = true;
+                }
             },
 
             initScanUtil() {

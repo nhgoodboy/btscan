@@ -4,6 +4,7 @@ module.exports = {
         //btscan
         "js/pages/btscan/home/home.vue",
         "js/pages/btscan/devices-check/devices-check.vue",
+        "js/pages/btscan/devices-check/innerPage/tasks-management.vue",
         "js/pages/btscan/devices-search/devices-search.vue",
         "js/pages/btscan/devices-management/devices-management.vue",
         "js/pages/btscan/history-records/history-records.vue",

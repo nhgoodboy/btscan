@@ -13,6 +13,10 @@ export default {
         title: '设备清点',
         url: '/pages/btscan/devices-check/devices-check.js',
     },
+    'tasks-management':{
+        title: '任务管理',
+        url: '/pages/btscan/devices-check/innerPage/tasks-management.js',
+    },
     'devices-search':{
         title: '设备搜寻',
         url: '/pages/btscan/devices-search/devices-search.js',
