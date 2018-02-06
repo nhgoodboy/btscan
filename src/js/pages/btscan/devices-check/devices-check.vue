@@ -236,6 +236,11 @@
                 devicesMap = new DevicesMap(this);
                 history = new TasksList(this);
                 this.initScanUtil();
+
+                this.$event.on('updateDevices', key => {
+                    this.devices[key].checked = false;
+                    Vue.delete(this.checkedDevices, key);
+                })
             });
         },
 
@@ -249,8 +254,7 @@
             },
 
             goTo(name) {
-                goTo(this, name,
-                    this.checkedDevices);
+                goTo(this, name, this.checkedDevices);
             },
 
             computeDistance(distance) {

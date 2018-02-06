@@ -16,7 +16,7 @@
         <list-top></list-top>
 
         <list class="list">
-            <cell v-for="(item, key, index) in checkedDevices" :key="index">
+            <cell v-for="(item, key, index) in checkedDevices" :key="key">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
                     <div class="cellLeftDiv">
                         <text class="devIcon">&#xe600;</text>
@@ -51,6 +51,7 @@
             return {
                 taskName: '',
                 checkedDevices: {},
+                devices: {}
             }
         },
 
@@ -91,10 +92,8 @@
                     okTitle: '是',
                     cancelTitle: '否',
                     okCallback() {
-                        _this.checkedDevices[key] = undefined;
-                        _this.$router.refresh;
-                        alert(_this, _this.checkedDevices);
-                        // delete _this.checkedDevices[key];
+                        Vue.delete(_this.checkedDevices, key);
+                        _this.$event.emit('updateDevices', key);
                         // if(_this.devArray[_this.checkedArray[index].mac]){
                         //     _this.devArray[_this.checkedArray[index].mac].checked = false;
                         // }
