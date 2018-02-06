@@ -1,3 +1,4 @@
+@import "../../../css/btscanBase";
 
 .topTextDiv {
   height: 120px;
@@ -28,7 +29,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #1db0b8;
+  background-color: $base-color;
 }
 
 .clearListDiv:active{
@@ -38,26 +39,26 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #16878d;
+  background-color: $deep-base-color;
 }
 
 .clearIcon{
   font-family: btscanIcon;
   color: white;
-  font-size: 40px;
+  font-size: $font-size-big;
   margin-right: 10px;
 }
 
 .text32 {
-  font-size: 32px;
+  font-size: $font-size-small;
 }
 
 .text36 {
-  font-size: 36px;
+  font-size: $font-size-normal;
 }
 
 .text80 {
-  font-size: 80px;
+  font-size: $font-size-80;
   font-weight: 700;
   line-height: 65px;
 }
@@ -102,6 +103,6 @@
 .goIcon{
   font-family: btscanIcon;
   color: gray;
-  font-size: 40px;
+  font-size: $font-size-big;
   margin-left: 10px;
 }

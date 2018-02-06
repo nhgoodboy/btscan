@@ -1,4 +1,4 @@
-
+@import "../../../../css/btscanBase";
 
 .box {
   width: 500px;
@@ -6,16 +6,16 @@
   margin-bottom: 50px;
   justify-content: center;
   align-items: center;
-  background-color: #1da1f2;
+  background-color: $base-color;
   border-radius: 12px;
 }
 
 .box:active {
-  background-color: #1db0b8;
+  background-color: $deep-base-color;
 }
 
 .title {
   color: black;
-  font-size: 36px;
+  font-size: $font-size-normal;
   text-align: center;
 }
