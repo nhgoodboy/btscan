@@ -1,5 +1,5 @@
 <template>
-    <div :class="[status ? 'searchButton' : 'searchButton2']" @click="turnStatus()">
+    <div :class="[status ? 'searchButton' : 'searchButton2']">
         <text class="scanIcon">&#xe64a;</text>
         <text class="title">{{title}}</text>
     </div>
@@ -10,24 +10,25 @@
     export default {
         data() {
             return {
-                status: true,
-                title: '开始扫描'
+
             }
         },
 
         props: {
-            // status: {
-            //     type: Boolean,
-            //     default: true
-            // },
-            // title: {
-            //     type: String,
-            //     default: '开始扫描'
-            // }
+            status: {
+                type: Boolean,
+                default: true
+            },
         },
 
         computed: {
-
+            title(){
+                if(this.status) {
+                    return '开始扫描';
+                }else {
+                    return '停止扫描';
+                }
+            }
         },
 
         mounted() {
@@ -35,10 +36,7 @@
         },
 
         methods: {
-            turnStatus() {
-                this.status = !this.status;
-                this.title = this.status ? '开始扫描' : '停止扫描';
-            }
+
         }
     }
 

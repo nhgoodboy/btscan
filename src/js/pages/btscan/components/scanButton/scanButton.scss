@@ -1,3 +1,4 @@
+@import "../../../../css/btscanBase";
 
 .searchButton{
   position: absolute;
@@ -5,13 +6,37 @@
   left: 0px;
   right: 0px;
   height: 120px;
-  background-color: #1db0b8;
+  background-color: $base-color;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.searchButton:active {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 120px;
+  background-color: $deep-base-color;
   justify-content: center;
   align-items: center;
   flex-direction: row;
 }
 
 .searchButton2{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 120px;
+  background-color: #c02330;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.searchButton2:active {
   position: absolute;
   bottom: 0px;
   left: 0px;

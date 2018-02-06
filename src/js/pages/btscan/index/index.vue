@@ -168,7 +168,7 @@
 <script>
     import "Config";
 
-    var scanUtil = weex.requireModule("scanUtil")
+    var scanUtil = weex.requireModule("scanUtil");
     //——————数据存储类定义——————
 
     //设备持久化实体类++++++++++++++++++++++++++++++++++++++++

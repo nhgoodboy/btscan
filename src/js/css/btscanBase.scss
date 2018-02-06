@@ -1,6 +1,6 @@
 //color
-$base-color: #1db0b8;
-$deep-base-color: #16878d;
+$base-color: #1da1f2;
+$deep-base-color: #1A77FF;
 
 //fontSize
 $font-size-small:  32px;
@@ -8,4 +8,16 @@ $font-size-normal: 36px;
 $font-size-big:    40px;
 $font-size-80:     80px;
 
+
+.text-normal {
+  font-size: $font-size-normal;
+}
+
+.text-small {
+  font-size: $font-size-small;
+}
+
+.text-big {
+  font-size: $font-size-big;
+}
 
