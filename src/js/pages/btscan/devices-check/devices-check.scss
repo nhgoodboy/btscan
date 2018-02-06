@@ -66,9 +66,11 @@
 }
 
 .bottomRightDiv{
-  height: 90px;
+  height: 70px;
   align-items: center;
   flex-direction: row;
+  border-radius: $border-radius;
+  padding-left: 10px;
 }
 
 .bottomRightDiv:active {
