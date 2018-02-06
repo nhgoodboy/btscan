@@ -68,9 +68,6 @@
 }
 
 .bottomFirstDiv{
-  position: absolute;
-  bottom: 120px;
-  left: 0px;
   height: 90px;
   width: 750px;
   flex-direction: row;
@@ -105,4 +102,67 @@
   color: gray;
   font-size: $font-size-big;
   margin-left: 10px;
+}
+
+.listBox{
+  flex: 1;
+}
+
+.cellInnerDiv{
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 90px;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #c1c1c1;
+}
+
+.cellLeftDiv{
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+}
+
+.devIcon{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+  margin-right: 20px;
+  opacity: 1;
+}
+
+.devIconElse{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+  margin-right: 20px;
+  opacity: 0.2;
+}
+
+.cellRightDiv{
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+}
+
+.addIcon{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+  margin-left: 10px;
+  opacity: 1;
+}
+
+.addIconCheck{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: lightgray;
+  margin-left: 10px;
+  opacity: 0.5;
+}
+
+.width360{
+  width: 360px;
+  text-overflow: ellipsis;
+  lines: 1;
 }

@@ -16,6 +16,23 @@
 
         <list-top></list-top>
 
+        <list class="listBox">
+            <cell v-for="(item, index) in devicesArray" :key="index">
+                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
+                    <div class="cellLeftDiv">
+                        <text :class="[item.isFind ? 'devIcon' : 'devIconElse']">&#xe600;</text>
+                        <text class="text32 width360">{{item.alias}}</text>
+                    </div>
+                    <div class="cellRightDiv">
+                        <text v-if="item.distance <= 10" class="text32">{{item.distance}}m / </text>
+                        <text class="text32" v-else>>10m / </text>
+                        <text class="text32">{{item.battery}}%</text>
+                        <text :class="[item.checked ? 'addIconCheck' : 'addIcon']" @click="pushCheckedArray(item)">&#xe632;</text>
+                    </div>
+                </div>
+            </cell>
+        </list>
+
         <div class="bottomFirstDiv">
             <div class="bottomLeftDiv">
                 <text class="countIcon">&#xe612;</text>
@@ -178,12 +195,29 @@
         data() {
             return {
                 scanButtonStatus: true,
+                devicesArray: [{isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},],
             }
         },
 
         components: {
             listTop,
             scanButton
+        },
+
+        computed: {
+            // isOddNum(index) {
+            //     return index % 2 === 0 ? false : true;
+            // }
         },
 
         mounted() {
@@ -209,6 +243,14 @@
 
             clearList(){
 
+            },
+
+            pushCheckedArray(item){
+                // if(!item.checked) {
+                //     var tempItem = JSON.stringify(item);  //json对象转json字符串
+                //     this.checkedArray.push(JSON.parse(tempItem));  //json字符串转json对象
+                //     item.checked = true;
+                // }
             },
 
             initScanUtil() {
