@@ -32,7 +32,7 @@
         </list>
 
 
-        <div class="button-box" @click="commit('devices-management')">
+        <div class="button-box" @click="commit()">
             <text class="text-normal colorWhite">确认提交</text>
         </div>
     </div>
@@ -41,10 +41,12 @@
 <script>
     if (process.env.NODE_ENV === 'development') require('Config');
 
-    import { alert, formatDateTime, goTo } from "../../utils/utils";
+    import { formatDateTime, goTo, back, DevicesMap, Device, Task, TasksList } from "../../utils/utils";
     import { listTop } from '../../components/index';
 
     let _this;
+    let devicesMap;
+    let history;
 
     export default {
         data() {
@@ -67,7 +69,11 @@
 
         mounted() {
             _this = this;
-            this.taskName = formatDateTime(new Date());
+            this.$nextTick(() => {
+                devicesMap = new DevicesMap(this);
+                history = new TasksList(this);
+                this.taskName = formatDateTime(new Date());
+            })
         },
 
         methods: {
@@ -99,15 +105,48 @@
                 })
             },
 
-            commit(name) {
-                this.taskDate.taskName = this.taskName;
-                this.taskDate.devices = this.checkedDevices;
-                // goTo(this, name, this.taskDate);
+            commit() {
+                if(this.checkedDevicesLength() > 0){
+                    //提交到设备管理
+                    for(let item in this.checkedDevices){
+                        let device = new Device(item.mac, item.alias, item.battery);
+                        if(devicesMap.containsKey(device.mac)){
+                            devicesMap.updateBattery(device.mac, device.battery);
+                        }else{
+                            devicesMap.put(device);
+                        }
+                    }
+
+                    devicesMap.save();
+
+                    //提交到历史记录
+                    let task = new Task(this.taskName, this.checkedDevices);
+                    history.add(task);
+                    history.save();
+
+                    this.checkedDevices = {};
+                    this.$event.emit('hadCommitTask');
+
+                    this.$notice.confirm({
+                        title: '温馨提示',
+                        message: '本次任务已提交！',
+                        okTitle: '去管理设备',
+                        cancelTitle: '返回',
+                        okCallback() {
+                            goTo(_this, 'devices-management');
+                        },
+                        cancelCallback() {
+                            back(_this);
+                        }
+                    })
+                }else{
+                    this.$notice.toast({
+                        message: '请先添加设备!'
+                    })
+                }
             }
         }
     }
-
-
 </script>
 
 <style lang="sass" src="./tasks-management.scss" scoped></style>

@@ -6,6 +6,13 @@ export function goTo(_this, name, params) {
     })
 }
 
+export function back(_this) {
+    _this.$router.back({
+        length: 1,
+        type: 'PUSH',
+    })
+}
+
 export function alert(_this, msg, title) {
     _this.$notice.alert({
         title: title || '提示',

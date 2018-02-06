@@ -54,13 +54,12 @@
     if (process.env.NODE_ENV === 'development') require('Config');
 
     import { listTop, scanButton } from '../components/index';
-    import { goTo, alert, DevicesMap, Device, Task, TasksList } from "../utils/utils";
+    import { goTo, alert, DevicesMap } from "../utils/utils";
 
     const scanUtil = weex.requireModule("scanUtil");
 
     let _this;
     let devicesMap;
-    let history;
 
     export default {
         data() {
@@ -104,12 +103,17 @@
             _this = this;
             this.$nextTick(() => {
                 devicesMap = new DevicesMap(this);
-                history = new TasksList(this);
                 this.initScanUtil();
 
                 this.$event.on('updateDevices', key => {
                     this.devices[key].checked = false;
                     Vue.delete(this.checkedDevices, key);
+                })
+
+                this.$event.on('hadCommitTask', () => {
+                    this.devices = {};
+                    this.checkedDevices = {};
+                    this.stopScan();
                 })
             });
         },
@@ -159,8 +163,6 @@
             addInCheckedDevices(item, key){
                 if(!item.checked) {
                     item.checked = true;
-                    // let tempItem = JSON.stringify(item);  //json对象转json字符串
-                    // this.checkedMap[key] = JSON.parse(tempItem);  //json字符串转json对象
                     this.checkedDevices[key] = item;
                 }
             },
