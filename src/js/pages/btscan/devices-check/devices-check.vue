@@ -4,7 +4,7 @@
             <div class="firstDiv">
                 <div class="leftDiv">
                     <text class="text-normal">已发现 </text>
-                    <text class="text-80">0</text>
+                    <text class="text-80">{{devicesLength()}}</text>
                     <text class="text-small"> 个设备</text>
                 </div>
                 <div class="clearListDiv" @click="clearList">
@@ -17,7 +17,7 @@
         <list-top></list-top>
 
         <list class="list">
-            <cell v-for="(item, index) in devicesArray" :key="index">
+            <cell v-for="(item, key, index) in devices" :key="index">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
                     <div class="cellLeftDiv">
                         <text :class="[item.isFind ? 'devIcon' : 'devIconElse']">&#xe600;</text>
@@ -26,7 +26,7 @@
                     <div class="cellRightDiv">
                         <text class="text-small">{{computeDistance(item.distance)}}</text>
                         <text class="text-small">{{item.battery}}%</text>
-                        <text :class="[item.checked ? 'addIconCheck' : 'addIcon']" @click="pushCheckedArray(item)">&#xe632;</text>
+                        <text :class="[item.checked ? 'addIconCheck' : 'addIcon']" @click="addInCheckedDevices(item, key)">&#xe632;</text>
                     </div>
                 </div>
             </cell>
@@ -36,7 +36,7 @@
             <div class="bottomLeftDiv">
                 <text class="countIcon">&#xe612;</text>
                 <text class="text-small">已确认清点 </text>
-                <text class="text-normal">{{checkedArray.length}}</text>
+                <text class="text-normal">{{checkedDevicesLength()}}</text>
                 <text class="text-small"> 个设备</text>
             </div>
             <div class="bottomRightDiv" @click="goTo('tasks-management')">
@@ -52,6 +52,7 @@
 
 <script>
     if (process.env.NODE_ENV === 'development') require('Config');
+
     import { listTop, scanButton } from '../components/index';
     import { goTo, alert } from "../utils/utils";
 
@@ -195,18 +196,24 @@
         data() {
             return {
                 scanButtonStatus: true,
-                checkedArray: [],
-                devicesArray: [{isFind: true, alias: '1', distance: 11, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 0.2, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: false, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 100, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},],
+                checkedDevices: {},
+                devices: {},
+
+                testMap: {'10:13:14:15:16:17': {isFind: true, alias: '1', distance: 11, battery: 99, checked: false},
+                    '11:13:14:15:16:17': {isFind: true, alias: '2', distance: 11, battery: 99, checked: false},
+                    '12:13:14:15:16:17': {isFind: true, alias: '3', distance: 11, battery: 99, checked: false},
+                    '13:13:14:15:16:17': {isFind: true, alias: '4', distance: 11, battery: 99, checked: false},
+                    '14:13:14:15:16:17': {isFind: true, alias: '5', distance: 11, battery: 99, checked: false},
+                    '15:13:14:15:16:17': {isFind: true, alias: '6', distance: 11, battery: 99, checked: false},
+                    '16:13:14:15:16:17': {isFind: true, alias: '7', distance: 8.00002, battery: 99, checked: false},
+                    '17:13:14:15:16:17': {isFind: true, alias: '8', distance: 11, battery: 99, checked: false},
+                    '18:13:14:15:16:17': {isFind: true, alias: '9', distance: 11, battery: 99, checked: false},
+                    '19:13:14:15:16:17': {isFind: true, alias: '10', distance: 11, battery: 99, checked: false},
+                    '20:13:14:15:16:17': {isFind: true, alias: '11', distance: 11, battery: 99, checked: false},
+                    '21:13:14:15:16:17': {isFind: true, alias: '12', distance: 11, battery: 99, checked: false},
+                    '22:13:14:15:16:17': {isFind: true, alias: '13', distance: 11, battery: 99, checked: false},
+                    '23:13:14:15:16:17': {isFind: true, alias: '14', distance: 11, battery: 99, checked: false},
+                    '24:13:14:15:16:17': {isFind: true, alias: '15', distance: 11, battery: 99, checked: false}}
             }
         },
 
@@ -215,22 +222,35 @@
             scanButton
         },
 
-        computed: {
+        computed: {  //有缓存
+
+        },
+
+        watch: {
 
         },
 
         mounted() {
             _this = this;
             this.$nextTick(() => {
-                deviceMap = new DeviceMap(this);
-                history = new TaskList(this);
+                devicesMap = new DevicesMap(this);
+                history = new TasksList(this);
                 this.initScanUtil();
             });
         },
 
         methods: {
+            checkedDevicesLength() {
+                return Object.keys(this.checkedDevices).length;
+            },
+
+            devicesLength() {
+                return Object.keys(this.devices).length;
+            },
+
             goTo(name) {
-                goTo(this, name, this.checkedArray);
+                goTo(this, name,
+                    this.checkedDevices);
             },
 
             computeDistance(distance) {
@@ -254,7 +274,7 @@
             clearList(){
                 scanUtil.clearList((resData) => {
                     if (resData) {
-                        this.devicesArray = [];
+                        this.devices = {};
                         this.$notice.toast({
                             'message': '列表已清空！'
                         })
@@ -262,11 +282,12 @@
                 })
             },
 
-            pushCheckedArray(item){
+            addInCheckedDevices(item, key){
                 if(!item.checked) {
-                    let tempItem = JSON.stringify(item);  //json对象转json字符串
-                    this.checkedArray.push(JSON.parse(tempItem));  //json字符串转json对象
                     item.checked = true;
+                    // let tempItem = JSON.stringify(item);  //json对象转json字符串
+                    // this.checkedMap[key] = JSON.parse(tempItem);  //json字符串转json对象
+                    this.checkedDevices[key] = item;
                 }
             },
 
@@ -279,30 +300,34 @@
                     if(isTrue){
                         this.scanButtonStatus = false;
 
+                        let tempMap = {};
+                        for(let key in this.testMap) {
+                            let tempItem = {};
+                            tempItem.alias = devicesMap.getAliasByMac(key);
+                            tempItem.distance = this.testMap[key].distance.toFixed(2);
+                            tempItem.isFind = this.testMap[key].isFind;
+                            tempItem.battery = this.testMap[key].battery;
+                            tempItem.checked = false;
+                            tempMap[key] = tempItem;
+                        }
+
+                        this.devices = tempMap;
+
                         scanUtil.startRanging("start", (resData) => {
                             // this.$notice.alert({
                             //     message: resData
                             // })
                             // let tempMap = {};
-                            // resData.forEach((item, index) => {
-                            //     let tempItem = {mac: '', alias: '', distance: '', isFind: '', battery: ''};
-                            //     tempItem.mac = item.mac;
-                            //     tempItem.alias = deviceMap.getAliasByMac(item.mac);
-                            //     tempItem.distance = item.distance.toFixed(2);
-                            //     tempItem.isFind = item.isFind;
-                            //     tempItem.battery = item.battery;
-                            //     tempMap[tempItem.mac] = tempItem;
-                            // });
-                            //
-                            // if(_this.checkedArray.length > 0){
-                            //     for (let index in _this.checkedArray){
-                            //         if(tempMap[_this.checkedArray[index].mac]){
-                            //             tempMap[_this.checkedArray[index].mac].checked = true;
-                            //         }
-                            //     }
+                            // for(let key in this.testMap) {
+                            //     let tempItem = {};
+                            //     tempItem.alias = devicesMap.getAliasByMac(key);
+                            //     tempItem.distance = this.testMap[key].distance.toFixed(2);
+                            //     tempItem.isFind = this.testMap[key].isFind;
+                            //     tempItem.battery = this.testMap[key].battery;
+                            //     tempMap[key] = tempItem;
                             // }
                             //
-                            // _this.devArray = tempMap;
+                            // this.devices = tempMap;
                         });
                     }else{
                         this.scanButtonStatus = true;

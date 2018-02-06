@@ -8,7 +8,7 @@
             <div class="taskTopSecondDiv">
                 <text class="text-small">设备清单</text>
                 <div class="countRightDiv">
-                    <text class="text-small">共计 {{checkedArray.length}} 项</text>
+                    <text class="text-small">共计 {{checkedDevicesLength()}} 项</text>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
         <list-top></list-top>
 
         <list class="list">
-            <cell v-for="(item,index) in checkedArray" :key="index">
+            <cell v-for="(item, key, index) in checkedDevices" :key="index">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
                     <div class="cellLeftDiv">
                         <text class="devIcon">&#xe600;</text>
@@ -25,7 +25,7 @@
                     <div class="cellRightDiv">
                         <text class="text-small">{{computeDistance(item.distance)}}</text>
                         <text class="text-small">{{item.battery}}%</text>
-                        <text class="deleteIcon" @click="deleteCheckedDev(checkedArray.indexOf(item))">&#xe634;</text>
+                        <text class="deleteIcon" @click="deleteCheckedDevices(item, key)">&#xe634;</text>
                     </div>
                 </div>
             </cell>
@@ -44,18 +44,19 @@
     import { alert } from "../../utils/utils";
     import { listTop } from '../../components/index';
 
+    let _this;
+
     export default {
         data() {
             return {
                 taskName: '',
-                checkedArray: [],
+                checkedDevices: {},
             }
         },
 
         bmRouter: {
             viewDidAppear(params) {
-                // alert(this, params);
-                this.checkedArray = params;
+                this.checkedDevices = params;
             }
         },
 
@@ -64,11 +65,15 @@
         },
 
         mounted() {
-
+            _this = this;
 
         },
 
         methods: {
+            checkedDevicesLength() {
+                return Object.keys(this.checkedDevices).length;
+            },
+
             computeDistance(distance) {
                 if(distance > 10){
                     return '>10m / ';
@@ -79,22 +84,25 @@
                 }
             },
 
-            deleteCheckedDev(index){
-                // var _this = this;
-                // this.$notice.confirm({
-                //     title: '温馨提示',
-                //     message: '是否确认删除？',
-                //     okTitle: '是',
-                //     cancelTitle: '否',
-                //     okCallback() {
-                //         if(_this.devArray[_this.checkedArray[index].mac]){
-                //             _this.devArray[_this.checkedArray[index].mac].checked = false;
-                //         }
-                //
-                //         _this.checkedArray.splice(index, 1);
-                //     },
-                //     cancelCallback() {}
-                // })
+            deleteCheckedDevices(item, key){
+                this.$notice.confirm({
+                    title: '温馨提示',
+                    message: '是否确认删除？',
+                    okTitle: '是',
+                    cancelTitle: '否',
+                    okCallback() {
+                        _this.checkedDevices[key] = undefined;
+                        _this.$router.refresh;
+                        alert(_this, _this.checkedDevices);
+                        // delete _this.checkedDevices[key];
+                        // if(_this.devArray[_this.checkedArray[index].mac]){
+                        //     _this.devArray[_this.checkedArray[index].mac].checked = false;
+                        // }
+                        //
+                        // _this.checkedArray.splice(index, 1);
+                    },
+                    cancelCallback() {}
+                })
             },
         }
     }
