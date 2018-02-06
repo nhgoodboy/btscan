@@ -24,9 +24,7 @@
                         <text class="text-small width360">{{item.alias}}</text>
                     </div>
                     <div class="cellRightDiv">
-                        <text v-if="item.distance <= 10 && item.distance >= 1" class="text-small">{{item.distance}}m / </text>
-                        <text class="text-small" v-else-if="item.distance < 1">10m / </text>
-                        <text class="text-small" v-else-if="item.distance < 1">10m / </text>
+                        <text class="text-small">{{computeDistance(item.distance)}}</text>
                         <text class="text-small">{{item.battery}}%</text>
                         <text :class="[item.checked ? 'addIconCheck' : 'addIcon']" @click="pushCheckedArray(item)">&#xe632;</text>
                     </div>
@@ -196,11 +194,11 @@
         data() {
             return {
                 scanButtonStatus: true,
-                devicesArray: [{isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                devicesArray: [{isFind: true, alias: '1', distance: 11, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 0.2, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: false, alias: '1', distance: 7, battery: 99, checked: false},
-                    {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
+                    {isFind: true, alias: '1', distance: 7, battery: 100, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: true},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
                     {isFind: true, alias: '1', distance: 7, battery: 99, checked: false},
@@ -216,9 +214,7 @@
         },
 
         computed: {
-            // isOddNum(index) {
-            //     return index % 2 === 0 ? false : true;
-            // }
+
         },
 
         mounted() {
@@ -231,6 +227,16 @@
         },
 
         methods: {
+            computeDistance(distance) {
+                if(distance > 10){
+                    return '>10m / ';
+                }else if(distance < 1){
+                    return '<1m / ';
+                }else{
+                    return distance + 'm / ';
+                }
+            },
+
             startScanOrStop() {
                 // this.$notice.alert({
                 //     message:  "asd"
