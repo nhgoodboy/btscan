@@ -16,7 +16,7 @@
         <list-top></list-top>
 
         <list class="list">
-            <cell v-for="(item, key, index) in checkedDevices" :key="key">
+            <cell v-for="(item, key, index) in checkedDevices" :key="index">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
                     <div class="cellLeftDiv">
                         <text class="devIcon">&#xe600;</text>

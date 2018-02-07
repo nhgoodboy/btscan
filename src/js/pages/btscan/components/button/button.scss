@@ -1,0 +1,14 @@
+@import "../../../../css/btscanBase";
+
+.box {
+  width: 200px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  border-radius: $border-radius;
+  background-color: $base-color;
+}
+
+.box:active {
+  background-color: $deep-base-color;
+}
