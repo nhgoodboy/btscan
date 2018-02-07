@@ -30,7 +30,6 @@
 
         <scanButton :status="scanButtonStatus" @click.native="startScanOrStop()"></scanButton>
     </div>
-
 </template>
 
 <script>
@@ -45,6 +44,7 @@
     export default {
         data() {
             return {
+                simulation: false,
                 searchContent: '',
                 devices: {},
                 scanButtonStatus: true,
@@ -106,7 +106,7 @@
                     if(isTrue){
                         this.scanButtonStatus = false;
 
-                        if(true) {
+                        if(this.simulation) {
                             let tempMap = {};
                             for(let key in this.testMap) {
                                 let tempItem = {};
@@ -114,26 +114,25 @@
                                 tempItem.distance = this.testMap[key].distance.toFixed(2);
                                 tempItem.isFind = this.testMap[key].isFind;
                                 tempItem.battery = this.testMap[key].battery;
-                                tempItem.checked = false;
-                                tempMap[key] = tempItem;
+
+                                if (tempItem.alias.indexOf(this.searchContent) >= 0) {
+                                    tempMap[key] = tempItem;
+                                }
                             }
                             this.devices = tempMap;
                         }else {
                             scanUtil.startRanging("start", (resData) => {
-                                // this.$notice.alert({
-                                //     message: resData
-                                // });
                                 let tempMap = {};
                                 for(let item of resData) {
                                     let tempItem = {};
-                                    // tempItem.mac = item.mac;
                                     tempItem.alias = devicesMap.getAliasByMac(item.mac);
                                     tempItem.distance = item.distance.toFixed(2);
                                     tempItem.isFind = item.isFind;
                                     tempItem.battery = item.battery;
-                                    tempItem.checked = this.checkedDevices[item.mac] ? true : false;
 
-                                    tempMap[item.mac] = tempItem;
+                                    if (tempItem.alias.indexOf(this.searchContent) >= 0) {
+                                        tempMap[item.mac] = tempItem;
+                                    }
                                 }
                                 this.devices = tempMap;
                             });
