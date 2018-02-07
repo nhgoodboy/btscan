@@ -3,7 +3,7 @@
         <div class="top-box">
             <button :text="'添加'" @buttonClick="addClick"></button>
             <button :text="'粘贴CSV'" @buttonClick="pasteCSV"></button>
-            <button :text="'按电量排序'" @sortByBattery="sortByBattery"></button>
+            <button :text="'按电量排序'" @buttonClick="orderByBattery"></button>
         </div>
 
         <div class="searchBar-box">
@@ -88,8 +88,26 @@
         },
 
         methods: {
-            sortByBattery() {
-
+            orderByBattery() {
+                let tempDev = this.devices;
+                let tempArray = [];
+                for(let key in tempDev) {
+                    let item = {};
+                    item.mac = key;
+                    item.alias = tempDev[key].alias;
+                    item.battery = tempDev[key].battery;
+                    tempArray.push(item);
+                }
+                let resultArray = [];
+                resultArray = tempArray.sort((a, b)=> {
+                    let x = typeof a['battery'] === 'number' ? a['battery'] : -1;
+                    let y = typeof b['battery'] === 'number' ? b['battery'] : -1;
+                    return y - x;
+                });
+                this.devices = {};
+                for(let item of resultArray) {
+                    this.devices[item.mac] = {alias: item.alias, battery: item.battery};
+                }
             },
 
             pasteCSV() {
@@ -99,7 +117,7 @@
                         let msg = '';
                         for (let key in data) {
                             let arr = data[key].split(',');
-                            if(!devicesMap.put(new Device(arr[0], arr[1], arr[2]))) {
+                            if(!devicesMap.put(new Device(arr[0], arr[1], Number(arr[2])))) {
                                 msg += '设备 ' + arr[0] + ' 已存在\n';
                             }
                         }
