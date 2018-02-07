@@ -1,5 +1,5 @@
 <template>
-    <div class="box" @click="click()">
+    <div class="box" @click="buttonClick()">
         <text class="text-small colorWhite">{{text}}</text>
     </div>
 
@@ -26,7 +26,7 @@
         },
 
         methods: {
-            click() {
+            buttonClick() {
                 this.$emit('buttonClick');
             }
         }

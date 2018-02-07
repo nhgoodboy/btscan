@@ -44,7 +44,7 @@
     export default {
         data() {
             return {
-                simulation: false,   //是否开启模拟数据
+                simulation: true,   //是否开启模拟数据
                 searchContent: '',
                 devices: {},
                 scanButtonStatus: true,

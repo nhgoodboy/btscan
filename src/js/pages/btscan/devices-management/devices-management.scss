@@ -67,3 +67,55 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.popup-box {
+  margin-top: 40px;
+}
+
+.popup-inner-box {
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 110px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  width: 470px;
+  height: 70px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: black;
+  background-color: $base-gray;
+  border-radius: $border-radius;
+}
+
+.popup-button-box {
+  position: absolute;
+  width: 750px;
+  bottom: 0px;
+  left: 0px;
+  flex-direction: row;
+}
+
+.popup-button {
+  height: 100px;
+  width: 375px;
+  border-top-width: 2px;
+  border-color: $base-gray;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-left-button {
+  border-right-width: 1px;
+}
+
+.popup-right-button {
+  border-left-width: 1px;
+}
+
+.colorBase {
+  color: $base-color;
+}

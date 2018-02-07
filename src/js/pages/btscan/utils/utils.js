@@ -60,13 +60,14 @@ export class DevicesMap {
     put(device) {
         if(!this.containsKey(device.mac)){
             this.map[device.mac] = device;
+            return true;
         } else {
-            this.alert('设备已存在')
+            return false;
         }
     }
 
     save() {
-        this.page.$storage.set('devicesMap', this.map).then(resData => {}, error => {});
+        this.page.$storage.setSync('devicesMap', this.map);
     }
 
     update(device) {
