@@ -3,7 +3,13 @@
         <div class="top-box">
             <button :text="'添加'"></button>
             <button :text="'粘贴CSV'"></button>
-            <button :text="'按电量'"></button>
+            <button :text="'按电量排序'"></button>
+        </div>
+
+        <search-bar></search-bar>
+
+        <div class="search-bar-box">
+
         </div>
     </div>
 
@@ -12,7 +18,7 @@
 <script>
     if (process.env.NODE_ENV === 'development') require('Config');
 
-    import { button } from '../components/index';
+    import { button, searchBar } from '../components/index';
 
     export default {
         data() {
@@ -22,7 +28,8 @@
         },
 
         components: {
-            button
+            button,
+            searchBar
         },
 
         mounted() {
@@ -30,7 +37,21 @@
         },
 
         methods: {
+            searchbarCancelClick(){
 
+            },
+            searchbarInputOninput(){
+
+            },
+            searchbarCloseClick(){
+
+            },
+            searchbarInputOnfocus(){
+
+            },
+            searchbarInputOnblur(){
+
+            }
         }
     }
 

@@ -32,7 +32,7 @@
                     <div class="cellRightDiv">
                         <text class="text-small">{{computeDistance(item.distance)}}</text>
                         <text class="text-small">{{item.battery}}%</text>
-                        <text :class="[item.checked ? 'addIconCheck' : 'addIcon']" @click="addInCheckedDevices(item, key)">&#xe632;</text>
+                        <text :class="[item.checked ? 'addIconCheck' : 'addIcon']" @click="addInCheckedDevices(item, key)">&#xe631;</text>
                     </div>
                 </div>
             </cell>

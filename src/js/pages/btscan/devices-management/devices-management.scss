@@ -2,8 +2,12 @@
 
 .top-box{
   height: 110px;
-  width: 750px;
+  margin-left: 30px;
+  margin-right: 30px;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+}
+
+.search-bar-box {
 }

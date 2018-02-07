@@ -1,0 +1,40 @@
+@import "../../../../css/btscanBase";
+
+.box {
+  height: 70px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
+
+}
+
+.input {
+  width: 500px;
+  height: 70px;
+  border-radius: $border-radius;
+  background-color: gainsboro;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: black;
+}
+
+.search-box {
+  width: 150px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  border-radius: $border-radius;
+  background-color: $base-color;
+}
+
+.search-box:active {
+  background-color: $deep-base-color;
+}
+
+.search-icon {
+  font-family: btscanIcon;
+  font-size: $font-size-big;
+  color: white;
+}
