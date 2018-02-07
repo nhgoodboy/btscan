@@ -32,7 +32,8 @@
 
         methods: {
             search() {
-                this.$emit('search', this.text);
+                let text = this.text;
+                this.$emit('search', text);
             },
         }
     }

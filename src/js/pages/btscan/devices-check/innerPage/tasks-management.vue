@@ -106,8 +106,8 @@
             commit() {
                 if(this.checkedDevicesLength() > 0){
                     //提交到设备管理
-                    for(let item in this.checkedDevices){
-                        let device = new Device(item.mac, item.alias, item.battery);
+                    for(let key in this.checkedDevices){
+                        let device = new Device(key, this.checkedDevices[key].alias, this.checkedDevices[key].battery);
                         if(devicesMap.containsKey(device.mac)){
                             devicesMap.updateBattery(device.mac, device.battery);
                         }else{

@@ -48,17 +48,13 @@ export class DevicesMap {
     }
 
     alert(msg) {
-        _this.$notice.toast({
+        this.page.$notice.toast({
             message: msg
         })
     }
 
     init() {
-        this.page.$storage.get('devicesMap').then(resData => {
-            this.map = resData;
-        }, error => {
-            this.map = {};
-        })
+        this.map = this.page.$storage.getSync('devicesMap');
     }
 
     put(device) {
@@ -77,19 +73,27 @@ export class DevicesMap {
         if(this.containsKey(device.mac)){
             this.map[device.mac] = device;
         } else {
-            this.alert('设备不存在！')
+            this.alert('设备不存在');
         }
     }
 
-    search(subKey) {
-        let result = [];
-        let _this = this;
-        for(let key in this.map) {
-            if(key.indexOf(subKey) >= 0 || this.map[key].alias.indexOf(subKey) >= 0) {
-                result.push(JSON.parse(JSON.stringify(_this.map[key])));
+    deleteByKey(key) {
+        delete this.map[key];
+        this.save();
+    }
+
+    search(text) {
+        if(!text.trim()){
+            return this.map;
+        }else {
+            let result = {};
+            for(let key in this.map) {
+                if(key.indexOf(text) >= 0 || this.map[key].alias.indexOf(text) >= 0) {
+                    result[key] = this.map[key];
+                }
             }
+            return result;
         }
-        return result;
     }
 
     updateBattery(mac, battery) {
@@ -102,6 +106,10 @@ export class DevicesMap {
 
     getAliasByMac(mac) {
         return this.map[mac] ? this.map[mac].alias : mac;
+    }
+
+    getAll() {
+        return this.page.$storage.getSync('devicesMap');
     }
 }
 

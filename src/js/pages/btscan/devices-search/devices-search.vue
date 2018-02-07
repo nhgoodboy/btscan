@@ -44,7 +44,7 @@
     export default {
         data() {
             return {
-                simulation: false,
+                simulation: false,   //是否开启模拟数据
                 searchContent: '',
                 devices: {},
                 scanButtonStatus: true,
@@ -115,7 +115,7 @@
                                 tempItem.isFind = this.testMap[key].isFind;
                                 tempItem.battery = this.testMap[key].battery;
 
-                                if (tempItem.alias.indexOf(this.searchContent) >= 0) {
+                                if (tempItem.alias.indexOf(this.searchContent) >= 0 || !this.searchContent.trim()) {
                                     tempMap[key] = tempItem;
                                 }
                             }

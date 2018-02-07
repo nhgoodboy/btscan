@@ -8,7 +8,7 @@
 
         <div class="searchBar-box">
             <text class="text-small">共{{devicesLength()}}项</text>
-            <search-bar :inputWidth="'400px'" :placeholder="'请输入设备标签或名称'"></search-bar>
+            <search-bar :inputWidth="'400px'" :placeholder="'请输入设备标签或名称'" @search="search"></search-bar>
         </div>
 
         <div class="list-head">
@@ -36,8 +36,9 @@
     if (process.env.NODE_ENV === 'development') require('Config');
 
     import { button, searchBar } from '../components/index';
-    import { DevicesMap } from "../utils/utils";
+    import { DevicesMap, alert } from "../utils/utils";
 
+    let _this;
     let devicesMap;
 
     export default {
@@ -53,17 +54,32 @@
         },
 
         mounted() {
+            _this = this;
             devicesMap = new DevicesMap(this);
             this.devices = devicesMap.map;
         },
 
         methods: {
+            search(text) {
+                this.devices = devicesMap.search(text);
+            },
+
             devicesLength() {
                 return Object.keys(this.devices).length;
             },
 
-            deleteDev() {
-
+            deleteDev(key) {
+                this.$notice.confirm({
+                    title: '温馨提示',
+                    message: '删除后记录将消失，是否删除?',
+                    okTitle: '是',
+                    cancelTitle: '否',
+                    okCallback() {
+                        Vue.delete(_this.devices, key);
+                        devicesMap.deleteByKey(key);
+                    },
+                    cancelCallback() {}
+                });
             }
         }
     }
