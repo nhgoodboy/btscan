@@ -126,7 +126,7 @@
 
                     this.$notice.confirm({
                         title: '温馨提示',
-                        message: '本次任务已提交！',
+                        message: '本次任务已提交',
                         okTitle: '去管理设备',
                         cancelTitle: '返回',
                         okCallback() {
@@ -138,7 +138,7 @@
                     })
                 }else{
                     this.$notice.toast({
-                        message: '请先添加设备!'
+                        message: '请先添加设备'
                     })
                 }
             }

@@ -47,6 +47,12 @@ export class DevicesMap {
         this.init();
     }
 
+    alert(msg) {
+        _this.$notice.toast({
+            message: msg
+        })
+    }
+
     init() {
         this.page.$storage.get('devicesMap').then(resData => {
             this.map = resData;
@@ -59,7 +65,7 @@ export class DevicesMap {
         if(!this.containsKey(device.mac)){
             this.map[device.mac] = device;
         } else {
-            this.alert('设备已存在！')
+            this.alert('设备已存在')
         }
     }
 
