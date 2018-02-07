@@ -5,7 +5,6 @@
             <text class="search-icon">&#xe960;</text>
         </div>
     </div>
-
 </template>
 
 <script>
