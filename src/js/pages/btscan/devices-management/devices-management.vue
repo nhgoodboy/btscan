@@ -7,7 +7,7 @@
         </div>
 
         <div class="searchBar-box">
-            <text class="text-small">共{{devicesLength()}}个</text>
+            <text class="text-small">共{{devicesLength()}}项</text>
             <search-bar :inputWidth="'400px'"></search-bar>
         </div>
 
