@@ -1,7 +1,73 @@
+@import "../../../css/btscanBase";
 
+.top-first-box {
+  height: 100px;
+  width: 750px;
+  padding-left: 30px;
+  padding-right: 30px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.input {
+  width: 520px;
+  height: 70px;
+  color: black;
+  border-radius: $border-radius;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: $base-gray;
+}
 
+.top-second-box {
+  height: 70px;
+  width: 750px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
-.box {
+.cellInnerDiv{
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 90px;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
+.cellLeftDiv{
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+}
+
+.width360{
+  width: 360px;
+  text-overflow: ellipsis;
+  lines: 1;
+}
+
+.cellRightDiv{
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+}
+
+.devIcon{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+  margin-right: 20px;
+  opacity: 1;
+}
+
+.devIconElse{
+  font-family: btscanIcon;
+  font-size: 50px;
+  color: black;
+  margin-right: 20px;
+  opacity: 0.2;
 }

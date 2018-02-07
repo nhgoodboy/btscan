@@ -1,7 +1,7 @@
 <template>
     <div class="listTopDiv">
         <text class="leftText">设备名称</text>
-        <text class="rightText1">距离 / </text>
+        <text class="rightText1" :style="{marginLeft: marginLeft}">距离 / </text>
         <text class="rightText2">电量</text>
     </div>
 
@@ -12,6 +12,13 @@
         data() {
             return {
 
+            }
+        },
+
+        props: {
+            marginLeft: {
+                type: String,
+                default: '300px'
             }
         },
 

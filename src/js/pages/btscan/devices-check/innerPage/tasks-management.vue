@@ -7,9 +7,7 @@
             </div>
             <div class="taskTopSecondDiv">
                 <text class="text-small">设备清单</text>
-                <div class="countRightDiv">
-                    <text class="text-small">共计 {{checkedDevicesLength()}} 项</text>
-                </div>
+                <text class="text-small">共计 {{checkedDevicesLength()}} 项</text>
             </div>
         </div>
 

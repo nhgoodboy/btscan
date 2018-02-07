@@ -158,11 +158,7 @@
             },
 
             startScanOrStop() {
-                if(this.scanButtonStatus) {
-                    this.startScan();
-                }else {
-                    this.stopScan();
-                }
+                this.scanButtonStatus ? this.startScan() : this.stopScan();
             },
 
             clearList(){
