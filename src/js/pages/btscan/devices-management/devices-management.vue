@@ -6,7 +6,10 @@
             <button :text="'按电量排序'"></button>
         </div>
 
-        <search-bar></search-bar>
+        <div class="searchBar-box">
+            <text class="text-small">共{{devicesLength()}}个</text>
+            <search-bar :inputWidth="'400px'"></search-bar>
+        </div>
 
         <div class="list-head">
             <text class="left-text">设备标签</text>
@@ -17,10 +20,10 @@
         <list class="list">
             <cell v-for="(item, key, index) in devices" :key="index">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
-                    <text class="text-small">{{key}}</text>
-                    <text class="text-small" >{{item.alias}}</text>
-                    <text class="text-small ">{{item.battery}}%</text>
-                    <text  class="delete-icon" @click="deleteDev(key)">&#xe634;</text>
+                    <text class="common-style text-key">{{key}}</text>
+                    <text class="common-style text-alias" >{{item.alias}}</text>
+                    <text class="common-style text-battery">{{item.battery}}%</text>
+                    <text class="common-style delete-icon" @click="deleteDev(key)">&#xe634;</text>
                 </div>
             </cell>
         </list>
@@ -41,7 +44,19 @@
                     '11:13:14:15:16:17': {alias: '1', battery: 98},
                     '12:13:14:15:16:17': {alias: '1', battery: 98},
                     '13:13:14:15:16:17': {alias: '1', battery: 98},
-                    '14:13:14:15:16:17': {alias: '1', battery: 98}},
+                    '14:13:14:15:16:17': {alias: '1', battery: 98},
+                    '15:13:14:15:16:17': {alias: '1', battery: 98},
+                    '16:13:14:15:16:17': {alias: '1', battery: 98},
+                    '17:13:14:15:16:17': {alias: '1', battery: 98},
+                    '18:13:14:15:16:17': {alias: '1', battery: 98},
+                    '19:13:14:15:16:17': {alias: '1', battery: 98},
+                    '20:13:14:15:16:17': {alias: '1', battery: 98},
+                    '21:13:14:15:16:17': {alias: '1', battery: 98},
+                    '22:13:14:15:16:17': {alias: '1', battery: 98},
+                    '23:13:14:15:16:17': {alias: '1', battery: 98},
+                    '24:13:14:15:16:17': {alias: '1', battery: 98},
+                    '25:13:14:15:16:17': {alias: '1', battery: 98},
+                },
             }
         },
 
@@ -55,6 +70,10 @@
         },
 
         methods: {
+            devicesLength() {
+                return Object.keys(this.devices).length;
+            },
+
             deleteDev() {
 
             }

@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <input class="input" type="text" v-model="text" :placeholder="placeholder" maxlength="20"/>
+        <input class="input" :style="{width: inputWidth}" type="text" v-model="text" :placeholder="placeholder" maxlength="20"/>
         <div class="search-box" @click="search()">
             <text class="search-icon">&#xe960;</text>
         </div>
@@ -19,8 +19,11 @@
             placeholder: {
                 type: String,
                 default: '请输入要搜索的内容'
+            },
+            inputWidth: {
+                type: String,
+                default: '515px'
             }
-
         },
 
         mounted() {
