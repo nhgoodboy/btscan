@@ -18,7 +18,7 @@
 
         <list class="list">
             <cell v-for="(item, key, index) in devices" :key="index">
-                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#F2DFDD' : '#D5FFF1'}">
+                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
                     <div class="cellLeftDiv">
                         <text :class="[item.isFind ? 'devIcon' : 'devIconElse']">&#xe600;</text>
                         <text class="text-small width360">{{item.alias}}</text>
@@ -207,7 +207,7 @@
                         });
                     }else{
                         this.scanButtonStatus = true;
-                        this.$notice.toast({message: "请打开蓝牙！"});
+                        this.$notice.toast({message: "请打开蓝牙"});
                     }
                 })
             },

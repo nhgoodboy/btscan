@@ -15,11 +15,12 @@
 .taskInput{
   width: 520px;
   height: 70px;
-  border-radius: 12px;
+  border-radius: $border-radius;
   border-width: 2px;
   padding: 10px;
   color: black;
   border-color: gray;
+  background-color: gainsboro;
 }
 
 .taskTopSecondDiv{
