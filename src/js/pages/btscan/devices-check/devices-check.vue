@@ -7,6 +7,12 @@
                     <text class="text-80">{{devicesLength()}}</text>
                     <text class="text-small"> 个设备</text>
                 </div>
+                <div>
+                    <div class="switch-box">
+                        <switch :checked="type === simulation.type" @change="turnSimulation()"></switch>
+                    </div>
+                    <text class="text-26">模拟数据</text>
+                </div>
                 <div class="clearListDiv" @click="clearList">
                     <text class="clearIcon">&#xe61d;</text>
                     <text class="text-small colorWhite">清空列表</text>
@@ -64,6 +70,7 @@
     export default {
         data() {
             return {
+                simulation: {type: 'solid', open: false},  //open 是否开启模拟数据
                 scanButtonStatus: true,
                 checkedDevices: {},
                 devices: {},
@@ -119,6 +126,15 @@
         },
 
         methods: {
+            turnSimulation() {
+                this.simulation.type = this.simulation.type ==='solid' ? 'hollow' : 'solid';
+                if(this.simulation.type === 'hollow') {
+                    this.simulation.open = true;
+                }else{
+                    this.simulation.open = false;
+                }
+            },
+
             checkedDevicesLength() {
                 return Object.keys(this.checkedDevices).length;
             },
@@ -176,35 +192,38 @@
                     if(isTrue){
                         this.scanButtonStatus = false;
 
-                        let tempMap = {};
-                        for(let key in this.testMap) {
-                            let tempItem = {};
-                            tempItem.alias = devicesMap.getAliasByMac(key);
-                            tempItem.distance = this.testMap[key].distance.toFixed(2);
-                            tempItem.isFind = this.testMap[key].isFind;
-                            tempItem.battery = this.testMap[key].battery;
-                            tempItem.checked = false;
-                            tempMap[key] = tempItem;
+                        if(this.simulation.open) {
+                            let tempMap = {};
+                            for(let key in this.testMap) {
+                                let tempItem = {};
+                                tempItem.alias = devicesMap.getAliasByMac(key);
+                                tempItem.distance = this.testMap[key].distance.toFixed(2);
+                                tempItem.isFind = this.testMap[key].isFind;
+                                tempItem.battery = this.testMap[key].battery;
+                                tempItem.checked = false;
+                                tempMap[key] = tempItem;
+                            }
+                            this.devices = tempMap;
+                        }else {
+                            scanUtil.startRanging("start", (resData) => {
+                                // this.$notice.alert({
+                                //     message: resData
+                                // });
+                                let tempMap = {};
+                                for(let item of resData) {
+                                    let tempItem = {};
+                                    tempItem.mac = item.mac;
+                                    tempItem.alias = devicesMap.getAliasByMac(item.mac);
+                                    tempItem.distance = item.distance.toFixed(2);
+                                    tempItem.isFind = item.isFind;
+                                    tempItem.battery = item.battery;
+                                    tempItem.checked = this.checkedDevices[item.mac] ? true : false;
+
+                                    tempMap[item.mac] = tempItem;
+                                }
+                                this.devices = tempMap;
+                            });
                         }
-
-                        this.devices = tempMap;
-
-                        scanUtil.startRanging("start", (resData) => {
-                            // this.$notice.alert({
-                            //     message: resData
-                            // })
-                            // let tempMap = {};
-                            // for(let key in this.testMap) {
-                            //     let tempItem = {};
-                            //     tempItem.alias = devicesMap.getAliasByMac(key);
-                            //     tempItem.distance = this.testMap[key].distance.toFixed(2);
-                            //     tempItem.isFind = this.testMap[key].isFind;
-                            //     tempItem.battery = this.testMap[key].battery;
-                            //     tempMap[key] = tempItem;
-                            // }
-                            //
-                            // this.devices = tempMap;
-                        });
                     }else{
                         this.scanButtonStatus = true;
                         this.$notice.toast({message: "请打开蓝牙"});
