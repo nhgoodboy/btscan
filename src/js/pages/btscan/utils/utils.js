@@ -73,8 +73,9 @@ export class DevicesMap {
     update(device) {
         if(this.containsKey(device.mac)){
             this.map[device.mac] = device;
+            return true;
         } else {
-            this.alert('设备不存在');
+            return false;
         }
     }
 
@@ -110,7 +111,8 @@ export class DevicesMap {
     }
 
     getAll() {
-        return this.page.$storage.getSync('devicesMap');
+        this.map = this.page.$storage.getSync('devicesMap');
+        return this.map;
     }
 }
 

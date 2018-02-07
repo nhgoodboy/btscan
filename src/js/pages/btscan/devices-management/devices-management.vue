@@ -2,8 +2,8 @@
     <div>
         <div class="top-box">
             <button :text="'添加'" @buttonClick="addClick"></button>
-            <button :text="'粘贴CSV'"></button>
-            <button :text="'按电量排序'"></button>
+            <button :text="'粘贴CSV'" @buttonClick="pasteCSV"></button>
+            <button :text="'按电量排序'" @sortByBattery="sortByBattery"></button>
         </div>
 
         <div class="searchBar-box">
@@ -18,7 +18,7 @@
         </div>
 
         <list class="list">
-            <cell v-for="(item, key, index) in devices" :key="index">
+            <cell v-for="(item, key, index) in devices" :key="index" @click="modifyDev(item, key)">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
                     <text class="common-style text-key">{{key}}</text>
                     <text class="common-style text-alias" >{{item.alias}}</text>
@@ -33,7 +33,7 @@
             <div class="popup-box">
                 <div class="popup-inner-box">
                     <text class="text-small">设备标签</text>
-                    <input class="input" type="text" v-model="dev.mac" maxlength="20"/>
+                    <input class="input" type="text" v-model="dev.mac" maxlength="20" :disabled="isModifyDev"/>
                 </div>
                 <div class="popup-inner-box">
                     <text class="text-small">设备名称</text>
@@ -44,47 +44,12 @@
                 <div class="popup-button popup-left-button" @click="clickPopupButotn('cancel')">
                     <text class="text-small">取消</text>
                 </div>
-                <div class="popup-button popup-right-button" @click="clickPopupButotn('add')">
-                    <text class="text-small colorBase">添加</text>
+                <div class="popup-button popup-right-button" @click="clickPopupButotn(isModifyDev ? 'modify' : 'add')">
+                    <text class="text-small colorBase">{{isModifyDev ? '修改' : '添加'}}</text>
                 </div>
             </div>
         </wxc-popup>
 
-        <!--<wxc-popup width="750" height="390"-->
-                   <!--pos="top"-->
-                   <!--:show="isShow"-->
-                   <!--@wxcPopupOverlayClicked="overlayClicked">-->
-
-            <!--<div class="popupDiv" >-->
-                <!--<div v-if="is_modify" class = "popupChildDiv">-->
-                    <!--<text class= "text32">设备标签</text>-->
-                    <!--<input  type="text" v-model="devLabel" class="popupDisInput " disabled=true />-->
-                <!--</div>-->
-
-                <!--<div v-else class = "popupChildDiv ">-->
-                    <!--<text class= "text32">设备标签</text>-->
-                    <!--<input  type="text" v-model="devLabel" class="popupInput " />-->
-                <!--</div>-->
-
-                <!--<div class = "popupChildDiv ">-->
-                    <!--<text class= "text32">设备名称</text>-->
-                    <!--<input type="text" v-model="devName" class="popupInput " />-->
-                <!--</div>-->
-
-                <!--<div  class = "popupChildDiv ">-->
-
-                    <!--<div v-if="is_modify">-->
-                        <!--<div @click="modifyDev" class="popupConfrimDiv"><text class= "text32">修改</text></div>-->
-                    <!--</div>-->
-                    <!--<div v-else>-->
-                        <!--<div @click="submit" class="popupConfrimDiv"><text class= "text32">添加</text></div>-->
-                    <!--</div>-->
-
-                    <!--<div  @click="reset" class="popupConfrimDiv"><text class= "text32">取消</text></div>-->
-
-                <!--</div>-->
-            <!--</div>-->
-        <!--</wxc-popup>-->
     </div>
 </template>
 
@@ -95,6 +60,8 @@
     import { DevicesMap, alert, Device } from '../utils/utils';
     import { WxcPopup } from 'weex-ui/index';
 
+    const clipboard = weex.requireModule("clipboard");
+
     let _this;
     let devicesMap;
 
@@ -102,6 +69,7 @@
         data() {
             return {
                 dev: {mac: '', alias: ''},
+                isModifyDev: false,
                 isTopShow: false,
                 devices: {},
             }
@@ -120,6 +88,47 @@
         },
 
         methods: {
+            sortByBattery() {
+
+            },
+
+            pasteCSV() {
+                clipboard.getString(ret => {
+                    if (ret.result === 'success' && ret.data.trim() !== '') {
+                        let data = ret.data.split('\r\n');
+                        let msg = '';
+                        for (let key in data) {
+                            let arr = data[key].split(',');
+                            if(!devicesMap.put(new Device(arr[0], arr[1], arr[2]))) {
+                                msg += '设备 ' + arr[0] + ' 已存在\n';
+                            }
+                        }
+                        if (msg === '') {
+                            msg += '全部导入成功';
+                        }else {
+                            msg += '其余导入成功';
+                        }
+                        this.$notice.alert({
+                            message: msg
+                        });
+                        devicesMap.save();
+                        this.devices = devicesMap.getAll();
+                    } else {
+                        this.$notice.alert({
+                            message: '格式错误，请重新获取正确的数据再粘贴'
+                        })
+                    }
+                });
+            },
+
+            modifyDev(item, mac){
+                this.isTopShow = true;
+                this.isModifyDev = true;
+                this.dev.mac = mac;
+                this.dev.alias = item.alias;
+                this.dev.battery = item.battery;
+            },
+
             clickPopupButotn(text) {
                 if(text === 'add') {
                     if(this.dev.mac.length !== 12){
@@ -147,9 +156,18 @@
                         }
                     }
                 }else if(text === 'modify') {
-
+                    if(devicesMap.update(new Device(this.dev.mac, this.dev.alias, this.dev.battery))) {
+                        devicesMap.save();
+                        this.dev = {mac: '', alias: ''};
+                        this.isTopShow = false;
+                        this.$tools.resignKeyboard();
+                        this.$notice.toast({message: '修改成功'});
+                    }else {
+                        this.$notice.toast({message: '修改失败'});
+                    }
                 }else {
                     this.isTopShow = false;
+                    this.$tools.resignKeyboard();
                 }
             },
 
