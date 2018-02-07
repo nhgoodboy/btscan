@@ -457,7 +457,7 @@
 
     .line {
         border-width: 0.5px;
-        border-color: gainsboro;
+        border-color: $base-gray;
         margin-top: 20px;
         margin-left: 30px;
         margin-right: 30px;

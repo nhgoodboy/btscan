@@ -19,7 +19,7 @@
   padding-left: 16px;
   padding-right: 16px;
   color: black;
-  background-color: gainsboro;
+  background-color: $base-gray;
 }
 
 .taskTopSecondDiv{
@@ -36,7 +36,7 @@
 .deleteIcon{
   font-family: btscanIcon;
   font-size: 50px;
-  color: #bf1d1e ;
+  color: $delete-icon-color;
 }
 
 

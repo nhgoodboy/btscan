@@ -8,11 +8,25 @@
 
         <search-bar></search-bar>
 
-        <div class="search-bar-box">
-
+        <div class="list-head">
+            <text class="left-text">设备标签</text>
+            <text class="middle-text">设备名称</text>
+            <text class="right-text">电量</text>
         </div>
-    </div>
 
+        <list class="list">
+            <cell v-for="(item, key, index) in devices" :key="index">
+                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
+                    <text class="text-small">{{key}}</text>
+                    <text class="text-small" >{{item.alias}}</text>
+                    <text class="text-small ">{{item.battery}}%</text>
+                    <text  class="delete-icon" @click="deleteDev(key)">&#xe634;</text>
+                </div>
+            </cell>
+        </list>
+
+
+    </div>
 </template>
 
 <script>
@@ -23,7 +37,11 @@
     export default {
         data() {
             return {
-
+                devices: {'10:13:14:15:16:17': {alias: '1', battery: 98},
+                    '11:13:14:15:16:17': {alias: '1', battery: 98},
+                    '12:13:14:15:16:17': {alias: '1', battery: 98},
+                    '13:13:14:15:16:17': {alias: '1', battery: 98},
+                    '14:13:14:15:16:17': {alias: '1', battery: 98}},
             }
         },
 
@@ -37,19 +55,7 @@
         },
 
         methods: {
-            searchbarCancelClick(){
-
-            },
-            searchbarInputOninput(){
-
-            },
-            searchbarCloseClick(){
-
-            },
-            searchbarInputOnfocus(){
-
-            },
-            searchbarInputOnblur(){
+            deleteDev() {
 
             }
         }

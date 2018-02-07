@@ -9,5 +9,38 @@
   align-items: center;
 }
 
-.search-bar-box {
+.list-head {
+  height: 80px;
+  width: 750px;
+  margin-top: 20px;
+  align-items: center;
+  flex-direction: row;
+  background-color: $base-gray;
+}
+
+.left-text {
+  margin-left: 30px;
+}
+
+.middle-text {
+  margin-left: 150px;
+}
+
+.right-text {
+  margin-left: 180px;
+}
+
+.cellInnerDiv{
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 90px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-icon {
+  font-family: btscanIcon;
+  font-size: $font-size-normal;
+  color: red;
 }
