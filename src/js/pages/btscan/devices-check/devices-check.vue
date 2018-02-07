@@ -170,7 +170,7 @@
                     if (resData) {
                         this.devices = {};
                         this.$notice.toast({
-                            'message': '列表已清空！'
+                            'message': '列表已清空'
                         })
                     }
                 })
@@ -212,7 +212,7 @@
                                 let tempMap = {};
                                 for(let item of resData) {
                                     let tempItem = {};
-                                    tempItem.mac = item.mac;
+                                    // tempItem.mac = item.mac;
                                     tempItem.alias = devicesMap.getAliasByMac(item.mac);
                                     tempItem.distance = item.distance.toFixed(2);
                                     tempItem.isFind = item.isFind;

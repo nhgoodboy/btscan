@@ -116,7 +116,6 @@
                             devicesMap.put(device);
                         }
                     }
-
                     devicesMap.save();
 
                     //提交到历史记录
@@ -124,8 +123,8 @@
                     history.add(task);
                     history.save();
 
-                    this.checkedDevices = {};
-                    this.$event.emit('hadCommitTask');
+                    this.checkedDevices = {};  //清空已选列表
+                    this.$event.emit('hadCommitTask');   //给清点页面发送停止搜寻信号
 
                     this.$notice.confirm({
                         title: '温馨提示',

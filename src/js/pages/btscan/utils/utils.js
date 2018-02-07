@@ -36,25 +36,15 @@ export function formatDateTime(date) {
     minute = minute < 10 ? ('0' + minute) : minute;
     // let second = date.getSeconds();
     // second = second < 10 ? ('0' + second) : second;
-//                return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
+    // return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
     return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
 }
 
 export class DevicesMap {
     constructor(_this) {
+        this.map;
         this.page = _this;
         this.init();
-    }
-
-    alert(msg) {
-        this.$notice.alert({
-            title: '提示',
-            message: msg,
-            okTitle: '确认',
-            callback() {
-
-            }
-        })
     }
 
     init() {
@@ -105,17 +95,13 @@ export class DevicesMap {
     }
 
     getAliasByMac(mac) {
-        if(this.map[mac]){
-            return this.map[mac].alias;
-        } else {
-            return mac;
-        }
+        return this.map[mac] ? this.map[mac].alias : mac;
     }
 }
 
 export class Device {
     constructor(mac, alias, battery) {
-        this.alias = alias ? alias : "unknowed";
+        this.alias = alias ? alias : "---";
         this.mac = mac;
         this.battery = (battery <= 100 && battery >= 0) ? battery : '---';
         this.lastChangeTime = new Date().toISOString();
@@ -137,11 +123,11 @@ export class Device {
 }
 
 export class Task {
-    constructor(taskName, devicesList, remark, operator) {
+    constructor(taskName, devices, remark, operator) {
         this.taskName = taskName;
         this.time = new Date().toISOString();
-        this.deviceList = devicesList;
-        this.devNum = devicesList.length;
+        this.devices = devices;
+        this.devNum = devices.length;
         this.remark = remark ? remark : '';
         this.operator = operator;
     }
@@ -149,6 +135,7 @@ export class Task {
 
 export class TasksList {
     constructor(_this) {
+        this.list;
         this.page = _this;
         this.init();
     }
@@ -165,7 +152,7 @@ export class TasksList {
         this.page.$storage.set('tasksList', this.list).then(resData => {}, error => {})
     }
 
-    add(obj) {
-        this.list.push(obj);
+    add(task) {
+        this.list.push(task);
     }
 }
