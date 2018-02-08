@@ -6,9 +6,9 @@ export function goTo(_this, name, params) {
     })
 }
 
-export function back(_this) {
+export function back(_this, length) {
     _this.$router.back({
-        length: 1,
+        length: length || 1,
         type: 'PUSH',
     })
 }

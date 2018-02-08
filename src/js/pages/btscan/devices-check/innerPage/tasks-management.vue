@@ -123,16 +123,12 @@
                     this.checkedDevices = {};  //清空已选列表
                     this.$event.emit('hadCommitTask');   //给清点页面发送停止搜寻信号
 
-                    this.$notice.confirm({
+                    this.$notice.alert({
                         title: '温馨提示',
                         message: '本次任务已提交',
-                        okTitle: '去管理设备',
-                        cancelTitle: '返回',
-                        okCallback() {
-                            goTo(_this, 'devices-management');
-                        },
-                        cancelCallback() {
-                            back(_this);
+                        okTitle: '返回首页',
+                        callback() {
+                            back(_this, 2);
                         }
                     })
                 }else{
