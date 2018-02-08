@@ -17,8 +17,8 @@
         </div>
 
         <list class="list">
-            <cell v-for="(item, index) in tasks" :key="index" @click="goTo(item)">
-                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
+            <cell v-for="(item, index) in tasks" :key="index">
+                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}" @click="goTo(item)">
                     <text class="common-style text-taskName">{{item.taskName}}</text>
                     <text class="common-style text-time">{{item.time}}</text>
                     <text class="common-style text-devNum" >{{item.devNum}}</text>
@@ -37,6 +37,7 @@
     import { TasksList, goTo } from '../utils/utils';
 
     const moment = require('../utils/moment');
+    const clipboard = weex.requireModule("clipboard");
 
     let _this;
     let tasksList;
@@ -66,7 +67,23 @@
             },
 
             copyDev(task) {
+                let copyCSV = '';
+                let devices = task.devices;
+                let devNum = task.devNum;
+                for(let key in devices) {
+                    devNum--;
+                    if(devNum) {
+                        copyCSV = copyCSV + key + ',' + devices[key].alias + ',' + devices[key].battery + '\r\n';
+                    }else {
+                        copyCSV = copyCSV + key + ',' + devices[key].alias + ',' + devices[key].battery;
+                    }
+                }
+                clipboard.setString(copyCSV);
 
+                this.$notice.alert({
+                    title: '复制成功',
+                    message: copyCSV
+                })
             },
 
             beforeMonth() {

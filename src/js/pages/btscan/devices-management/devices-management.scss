@@ -34,6 +34,11 @@
   height: 90px;
   flex-direction: row;
   align-items: center;
+  opacity: 1;
+}
+
+.cellInnerDiv:active {
+  opacity: 0.5;
 }
 
 .common-style {
@@ -87,8 +92,18 @@
   padding-left: 16px;
   padding-right: 16px;
   color: black;
-  background-color: $base-gray;
   border-radius: $border-radius;
+  border-width: 2px;
+}
+
+.disabledInput {
+  width: 470px;
+  height: 70px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: black;
+  border-radius: $border-radius;
+  background-color: $base-gray;
 }
 
 .popup-button-box {

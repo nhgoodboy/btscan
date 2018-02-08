@@ -18,8 +18,8 @@
         </div>
 
         <list class="list">
-            <cell v-for="(item, key, index) in devices" :key="index" @click="modifyDev(item, key)">
-                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
+            <cell v-for="(item, key, index) in devices" :key="index">
+                <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}" @click="modifyDev(item, key)">
                     <text class="common-style text-key">{{key}}</text>
                     <text class="common-style text-alias" >{{item.alias}}</text>
                     <text class="common-style text-battery">{{item.battery}}%</text>
@@ -33,7 +33,7 @@
             <div class="popup-box">
                 <div class="popup-inner-box">
                     <text class="text-small">设备标签</text>
-                    <input class="input" type="text" v-model="dev.mac" maxlength="20" :disabled="isModifyDev"/>
+                    <input :class="[isModifyDev ? 'disabledInput' : 'input']" type="text" v-model="dev.mac" maxlength="20" :disabled="isModifyDev"/>
                 </div>
                 <div class="popup-inner-box">
                     <text class="text-small">设备名称</text>
@@ -115,16 +115,19 @@
                     if (ret.result === 'success' && ret.data.trim() !== '') {
                         let data = ret.data.split('\r\n');
                         let msg = '';
+                        let devNum = 0;
                         for (let key in data) {
                             let arr = data[key].split(',');
                             if(!devicesMap.put(new Device(arr[0], arr[1], Number(arr[2])))) {
                                 msg += '设备 ' + arr[0] + ' 已存在\n';
+                            }else {
+                                devNum++;
                             }
                         }
                         if (msg === '') {
                             msg += '全部导入成功';
                         }else {
-                            msg += '其余导入成功';
+                            msg += '其余 '+devNum+' 个导入成功';
                         }
                         this.$notice.alert({
                             message: msg
@@ -183,7 +186,6 @@
                     }else {
                         this.$notice.toast({message: '修改失败'});
                     }
-                    this.isModifyDev = false;
                 }else {
                     this.dev = {mac: '', alias: ''};
                     this.isTopShow = false;
@@ -192,6 +194,7 @@
             },
 
             addClick() {
+                this.isModifyDev = false;
                 this.isTopShow = true;
             },
 

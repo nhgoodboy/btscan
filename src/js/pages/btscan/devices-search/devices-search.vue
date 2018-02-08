@@ -3,7 +3,7 @@
         <div>
             <div class="top-first-box">
                 <text class="text-small">搜索条件</text>
-                <input class="input" type="text" v-model="searchContent" maxlength="20"/>
+                <input class="input" type="text" v-model="searchContent" placeholder="请输入要搜寻的设备标签或名称" maxlength="20"/>
             </div>
             <div class="top-second-box">
                 <text class="text-small">设备清单</text>

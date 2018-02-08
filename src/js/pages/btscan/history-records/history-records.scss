@@ -61,6 +61,11 @@
   height: 90px;
   flex-direction: row;
   align-items: center;
+  opacity: 1;
+}
+
+.cellInnerDiv:active {
+  opacity: 0.5;
 }
 
 .common-style {

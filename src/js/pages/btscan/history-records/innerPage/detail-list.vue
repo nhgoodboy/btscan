@@ -14,7 +14,7 @@
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
                     <text class="common-style text-key">{{key}}</text>
                     <text class="common-style text-alias">{{item.alias}}</text>
-                    <text class="common-style text-battery" >{{item.battery}}</text>
+                    <text class="common-style text-battery" >{{item.battery}}%</text>
                 </div>
             </cell>
         </list>
