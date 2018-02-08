@@ -29,6 +29,10 @@ export default {
         title: '历史记录',
         url: '/pages/btscan/history-records/history-records.js',
     },
+    'detail-list':{
+        title: '详细清单',
+        url: '/pages/btscan/history-records/innerPage/detail-list.js',
+    },
     'about':{
         title: '关于',
         url: '/pages/btscan/about/about.js',

@@ -145,6 +145,7 @@ export class Task {
     constructor(taskName, devices, remark, operator) {
         this.taskName = taskName || '临时任务';
         this.time = formatDateTime(new Date());
+        // this.time = '2018-01-01 18:16';
         this.devices = devices;
         this.devNum = Object.keys(devices).length;
         this.remark = remark || '';
@@ -170,5 +171,19 @@ export class TasksList {
 
     add(task) {
         this.list.push(task);
+    }
+
+    search(text) {
+        if(!text.trim()){
+            return this.list;
+        }else {
+            let result = [];
+            for(let item of this.list) {
+                if(item.taskName.indexOf(text) >= 0) {
+                    result.push(item);
+                }
+            }
+            return result;
+        }
     }
 }

@@ -8,6 +8,7 @@ module.exports = {
         "js/pages/btscan/devices-search/devices-search.vue",
         "js/pages/btscan/devices-management/devices-management.vue",
         "js/pages/btscan/history-records/history-records.vue",
+        "js/pages/btscan/history-records/innerPage/detail-list.vue",
         "js/pages/btscan/about/about.vue",
 
         "js/pages/btscan/index/test.js",

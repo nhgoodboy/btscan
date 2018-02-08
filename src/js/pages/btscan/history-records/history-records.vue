@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="top-box">
-            <button text="全部" @buttonClick="all"></button>
             <button text="30天前" @buttonClick="beforeMonth"></button>
             <button text="30天内" @buttonClick="inMonth"></button>
         </div>
@@ -18,7 +17,7 @@
         </div>
 
         <list class="list">
-            <cell v-for="(item, index) in tasks" :key="index" @click="modifyDev(item, key)">
+            <cell v-for="(item, index) in tasks" :key="index" @click="goTo(item)">
                 <div class="cellInnerDiv" :style="{backgroundColor: (index % 2) ? '#90D8FF' : 'white'}">
                     <text class="common-style text-taskName">{{item.taskName}}</text>
                     <text class="common-style text-time">{{item.time}}</text>
@@ -35,7 +34,9 @@
     if (process.env.NODE_ENV === 'development') require('Config');
 
     import { button, searchBar } from '../components/index';
-    import { TasksList } from '../utils/utils';
+    import { TasksList, goTo } from '../utils/utils';
+
+    const moment = require('../utils/moment');
 
     let _this;
     let tasksList;
@@ -60,20 +61,38 @@
         },
 
         methods: {
+            goTo(item) {
+                goTo(this, 'detail-list', item);
+            },
+
             copyDev(task) {
 
             },
 
-            all() {
-
-            },
-
             beforeMonth() {
-
+                let tempList = [];
+                tasksList.list.forEach(item => {
+                    let countDays = moment().diff(moment(item.time), 'hours') / 24;
+                    if(countDays > 30){
+                        tempList.push(item);
+                    }
+                });
+                this.tasks = tempList;
             },
 
             inMonth() {
+                let tempList = [];
+                tasksList.list.forEach(item => {
+                    let countDays = moment().diff(moment(item.time), 'hours') / 24;
+                    if(countDays <= 30){
+                        tempList.push(item);
+                    }
+                });
+                this.tasks = tempList;
+            },
 
+            search(text) {
+                this.tasks = tasksList.search(text);
             }
         }
     }
