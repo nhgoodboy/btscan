@@ -123,11 +123,11 @@ export class Device {
         this.alias = alias ? alias : "---";
         this.mac = mac;
         this.battery = (battery <= 100 && battery >= 0) ? battery : '---';
-        this.lastChangeTime = new Date().toISOString();
+        this.lastChangeTime = formatDateTime(new Date());
     }
 
     updateTime() {
-        this.lastChangeTime = new Date().toISOString();
+        this.lastChangeTime = formatDateTime(new Date());
     }
 
     setAlias(alias) {
@@ -143,28 +143,25 @@ export class Device {
 
 export class Task {
     constructor(taskName, devices, remark, operator) {
-        this.taskName = taskName;
-        this.time = new Date().toISOString();
+        this.taskName = taskName || '临时任务';
+        this.time = formatDateTime(new Date());
         this.devices = devices;
-        this.devNum = devices.length;
-        this.remark = remark ? remark : '';
+        this.devNum = Object.keys(devices).length;
+        this.remark = remark || '';
         this.operator = operator;
     }
 }
 
 export class TasksList {
     constructor(_this) {
-        this.list;
+        this.list = [];
         this.page = _this;
         this.init();
     }
 
     init() {
-        this.page.$storage.get('tasksList').then(resData => {
-            this.list = resData;
-        }, error => {
-            this.list = [];
-        })
+        let tempList = this.page.$storage.getSync('tasksList');
+        this.list = tempList ? tempList : [];
     }
 
     save() {

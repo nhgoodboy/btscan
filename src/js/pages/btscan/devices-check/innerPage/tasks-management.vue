@@ -39,17 +39,17 @@
 <script>
     if (process.env.NODE_ENV === 'development') require('Config');
 
-    import { formatDateTime, goTo, back, DevicesMap, Device, Task, TasksList } from "../../utils/utils";
+    import { goTo, back, DevicesMap, Device, Task, TasksList } from "../../utils/utils";
     import { listTop } from '../../components/index';
 
     let _this;
     let devicesMap;
-    let history;
+    let tasksList;
 
     export default {
         data() {
             return {
-                taskName: '',
+                taskName: '临时任务',
                 checkedDevices: {},
                 taskDate: {}
             }
@@ -69,8 +69,7 @@
             _this = this;
             this.$nextTick(() => {
                 devicesMap = new DevicesMap(this);
-                history = new TasksList(this);
-                this.taskName = formatDateTime(new Date());
+                tasksList = new TasksList(this);
             })
         },
 
@@ -118,8 +117,8 @@
 
                     //提交到历史记录
                     let task = new Task(this.taskName, this.checkedDevices);
-                    history.add(task);
-                    history.save();
+                    tasksList.add(task);
+                    tasksList.save();
 
                     this.checkedDevices = {};  //清空已选列表
                     this.$event.emit('hadCommitTask');   //给清点页面发送停止搜寻信号

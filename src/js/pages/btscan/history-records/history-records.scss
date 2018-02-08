@@ -1,7 +1,69 @@
+@import "../../../css/btscanBase";
 
+.top-box{
+  height: 110px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 
+.searchBar-box {
+  flex-direction: row;
+  margin-left: 20px;
+  margin-right: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.list-head {
+  height: 80px;
+  width: 750px;
+  margin-top: 20px;
+  align-items: center;
+  flex-direction: row;
+  background-color: $base-gray;
+}
 
-.box {
+.left-text {
+  margin-left: 30px;
+}
 
+.middle-text {
+  margin-left: 200px;
+}
+
+.right-text {
+  margin-left: 150px;
+}
+
+.text-taskName {
+  left: 20px;
+}
+
+.text-time {
+  left: 350px;
+}
+
+.text-devNum {
+  left: 620px;
+}
+
+.copy-icon {
+  left: 690px;
+  font-family: btscanIcon;
+  font-size: $font-size-normal;
+  color: black;
+}
+
+.cellInnerDiv{
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 90px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.common-style {
+  position: absolute;
+  top: 27px;
 }
