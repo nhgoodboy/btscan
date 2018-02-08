@@ -1,0 +1,60 @@
+@import "../../../../css/btscanBase";
+
+.list-head {
+  height: 80px;
+  width: 750px;
+  margin-top: 20px;
+  align-items: center;
+  flex-direction: row;
+  background-color: $base-gray;
+}
+
+.left-text {
+  margin-left: 30px;
+}
+
+.middle-text {
+  margin-left: 150px;
+}
+
+.right-text {
+  margin-left: 210px;
+}
+
+.task-name {
+  font-size: $font-size-big;
+}
+
+.top-box {
+  height: 60px;
+  width: 750px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.cellInnerDiv {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 90px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.common-style {
+  position: absolute;
+  top: 27px;
+}
+
+.text-key {
+  left: 20px;
+}
+
+.text-alias {
+  left: 300px;
+}
+
+.text-battery {
+  left: 640px;
+}
+
