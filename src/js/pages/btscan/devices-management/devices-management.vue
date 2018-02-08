@@ -183,7 +183,9 @@
                     }else {
                         this.$notice.toast({message: '修改失败'});
                     }
+                    this.isModifyDev = false;
                 }else {
+                    this.dev = {mac: '', alias: ''};
                     this.isTopShow = false;
                     this.$tools.resignKeyboard();
                 }
@@ -194,6 +196,7 @@
             },
 
             popupOverlayTopClick() {
+                this.dev = {mac: '', alias: ''};
                 this.isTopShow = false;
             },
 

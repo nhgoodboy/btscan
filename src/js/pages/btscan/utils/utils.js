@@ -42,7 +42,7 @@ export function formatDateTime(date) {
 
 export class DevicesMap {
     constructor(_this) {
-        this.map;
+        this.map = {};
         this.page = _this;
         this.init();
     }
@@ -54,7 +54,8 @@ export class DevicesMap {
     }
 
     init() {
-        this.map = this.page.$storage.getSync('devicesMap');
+        let tempMap = this.page.$storage.getSync('devicesMap');
+        this.map = tempMap ? tempMap : {};
     }
 
     put(device) {
@@ -111,7 +112,8 @@ export class DevicesMap {
     }
 
     getAll() {
-        this.map = this.page.$storage.getSync('devicesMap');
+        let tempMap = this.page.$storage.getSync('devicesMap');
+        this.map = tempMap ? tempMap : {};
         return this.map;
     }
 }
