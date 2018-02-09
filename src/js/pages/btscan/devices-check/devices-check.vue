@@ -184,6 +184,8 @@
             },
 
             startScan() {
+                this.$event.emit('startAnimation', true);
+
                 scanUtil.checkBluetooth((isTrue) => {
                     if(isTrue){
                         this.scanButtonStatus = false;
@@ -230,6 +232,7 @@
             stopScan: function () {
                 scanUtil.stopRanging((e) => {});
                 this.scanButtonStatus = true;
+                this.$event.emit('startAnimation', false);
             },
         }
     }

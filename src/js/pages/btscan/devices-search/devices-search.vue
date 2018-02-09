@@ -44,7 +44,7 @@
     export default {
         data() {
             return {
-                simulation: true,   //是否开启模拟数据
+                simulation: false,   //是否开启模拟数据
                 searchContent: '',
                 devices: {},
                 scanButtonStatus: true,
@@ -102,6 +102,8 @@
             },
 
             startScan() {
+                this.$event.emit('startAnimation', true);
+
                 scanUtil.checkBluetooth((isTrue) => {
                     if(isTrue){
                         this.scanButtonStatus = false;
@@ -147,6 +149,7 @@
             stopScan: function () {
                 scanUtil.stopRanging((e) => {});
                 this.scanButtonStatus = true;
+                this.$event.emit('startAnimation', false);
             },
         }
     }
