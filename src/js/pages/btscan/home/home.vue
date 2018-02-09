@@ -3,12 +3,12 @@
         <text class="title">室内设备管理</text>
 
         <div class="buttons">
-            <buttonItem :title="'设备清点'" @click.native="goTo('devices-check')"></buttonItem>
-            <buttonItem :title="'设备搜寻'" @click.native="goTo('devices-search')"></buttonItem>
-            <buttonItem :title="'设备管理'" @click.native="goTo('devices-management')"></buttonItem>
-            <buttonItem :title="'历史记录'" @click.native="goTo('history-records')"></buttonItem>
-            <buttonItem :title="'关于'" @click.native="goTo('about')"></buttonItem>
-            <buttonItem :title="'index'" @click.native="goTo('index')"></buttonItem>
+            <buttonItem title="设备清点" icon="&#xe603;" @click.native="goTo('devices-check')"></buttonItem>
+            <buttonItem title="设备搜寻" icon="&#xe960;" @click.native="goTo('devices-search')"></buttonItem>
+            <buttonItem title="设备管理" icon="&#xe64e;" @click.native="goTo('devices-management')"></buttonItem>
+            <buttonItem title="历史记录" icon="&#xe609;" @click.native="goTo('history-records')"></buttonItem>
+            <buttonItem title="关于" icon="&#xe677;" @click.native="goTo('about')"></buttonItem>
+            <buttonItem title="index" @click.native="goTo('index')"></buttonItem>
         </div>
     </div>
 

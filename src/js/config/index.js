@@ -9,7 +9,7 @@ let domModule = weex.requireModule("dom");
 domModule.addRule('fontFace', {
     'fontFamily': "btscanIcon",
     // 'src': "url('bmlocal://iconfont/iconfont.ttf')"
-    'src': "url('//at.alicdn.com/t/font_467356_sozdsmf0znkx1or.ttf')"
+    'src': "url('//at.alicdn.com/t/font_467356_8p1o93wchy6i529.ttf')"
 });
 
 new Widget({

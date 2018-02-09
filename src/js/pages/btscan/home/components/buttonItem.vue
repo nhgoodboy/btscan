@@ -1,18 +1,26 @@
 <template>
     <div class="box">
-        <text class="title">{{title}}</text>
+        <div class="inner-box">
+            <text class="icon colorWhite">{{transIcon(icon)}}</text>
+            <text class="title colorWhite">{{title}}</text>
+        </div>
     </div>
 
 </template>
 
 <script>
+    import { transIcon } from "../../utils/utils";
+
     export default {
         props: {
             title: {
                 type: String,
                 default: ''
+            },
+            icon: {
+                type: String,
+                default: '&#xe603;'
             }
-
         },
 
         data() {
@@ -25,8 +33,10 @@
 
         },
 
-        method: {
-
+        methods: {
+            transIcon(icon) {
+                return transIcon(icon);
+            }
         }
     }
 

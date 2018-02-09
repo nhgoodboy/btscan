@@ -22,7 +22,7 @@
                     <text class="common-style text-taskName">{{item.taskName}}</text>
                     <text class="common-style text-time">{{item.time}}</text>
                     <text class="common-style text-devNum" >{{item.devNum}}</text>
-                    <text class="common-style copy-icon" @click="copyDev(item)">&#xe85e;</text>
+                    <text class="common-style copy-icon" @click="copyDev(item)">&#xe608;</text>
                 </div>
             </cell>
         </list>

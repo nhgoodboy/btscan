@@ -24,6 +24,14 @@ export function alert(_this, msg, title) {
     })
 }
 
+export function transIcon(icon) {
+    if(!icon){
+        return "空";
+    };
+    icon = icon.replace("&#x",'');
+    return String.fromCharCode(parseInt(icon, 16).toString(10));
+}
+
 export function formatDateTime(date) {
     let y = date.getFullYear();
     let m = date.getMonth() + 1;

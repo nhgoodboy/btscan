@@ -3,9 +3,9 @@
         <div class="topTextDiv">
             <div class="firstDiv">
                 <div class="leftDiv">
-                    <text class="text-normal">已发现 </text>
+                    <text class="text-normal">已发现</text>
                     <text class="text-80">{{devicesLength()}}</text>
-                    <text class="text-small"> 个设备</text>
+                    <text class="text-small">个设备</text>
                 </div>
                 <div>
                     <div class="switch-box">
