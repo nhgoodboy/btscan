@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box" @click="buttonClick()">
         <div class="inner-box">
             <text class="icon colorWhite">{{transIcon(icon)}}</text>
             <text class="title colorWhite">{{title}}</text>
@@ -36,7 +36,12 @@
         methods: {
             transIcon(icon) {
                 return transIcon(icon);
+            },
+
+            buttonClick() {
+                this.$emit('buttonClick', this.title);
             }
+
         }
     }
 

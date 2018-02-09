@@ -3,11 +3,11 @@
         <text class="title">室内设备管理</text>
 
         <div class="buttons">
-            <buttonItem title="设备清点" icon="&#xe603;" @click.native="goTo('devices-check')"></buttonItem>
-            <buttonItem title="设备搜寻" icon="&#xe960;" @click.native="goTo('devices-search')"></buttonItem>
-            <buttonItem title="设备管理" icon="&#xe64e;" @click.native="goTo('devices-management')"></buttonItem>
-            <buttonItem title="历史记录" icon="&#xe609;" @click.native="goTo('history-records')"></buttonItem>
-            <buttonItem title="关于" icon="&#xe677;" @click.native="goTo('about')"></buttonItem>
+            <buttonItem title="设备清点" icon="&#xe603;" @buttonClick="goTo"></buttonItem>
+            <buttonItem title="设备搜寻" icon="&#xe960;" @buttonClick="goTo"></buttonItem>
+            <buttonItem title="设备管理" icon="&#xe64e;" @buttonClick="goTo"></buttonItem>
+            <buttonItem title="历史记录" icon="&#xe609;" @buttonClick="goTo"></buttonItem>
+            <buttonItem title="关于" icon="&#xe677;" @buttonClick="goTo"></buttonItem>
         </div>
     </div>
 
@@ -35,8 +35,26 @@
         },
 
         methods: {
-            goTo(name) {
-                goTo(this, name);
+            goTo(title) {
+                let urlName = '';
+                switch (title) {
+                    case '设备清点':
+                        urlName = 'devices-check';
+                        break;
+                    case '设备搜寻':
+                        urlName = 'devices-search';
+                        break;
+                    case '设备管理':
+                        urlName = 'devices-management';
+                        break;
+                    case '历史记录':
+                        urlName = 'history-records';
+                        break;
+                    case '关于':
+                        urlName = 'about';
+                        break;
+                }
+                goTo(this, urlName);
             },
         }
     }
