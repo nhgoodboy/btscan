@@ -417,7 +417,7 @@
                     history.save();
 
                     this.$notice.alert({
-                        title: '温馨提示',
+
                         message: '已提交！',
                         okTitle: '确定',
                         callback(){
@@ -442,7 +442,7 @@
             deleteCheckedDev(index){
                 var _this = this;
                 this.$notice.confirm({
-                    title: '温馨提示',
+
                     message: '是否确认删除？',
                     okTitle: '是',
                     cancelTitle: '否',

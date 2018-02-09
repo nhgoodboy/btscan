@@ -154,7 +154,7 @@
                 if(text === 'add') {
                     if(this.dev.mac.length !== 12){
                         this.$notice.alert({
-                            title: '温馨提示',
+
                             message: '请输入正确的12位设备标签,例如: A1B2C3D4E5F6'
                         });
                     }else {
@@ -213,7 +213,6 @@
 
             deleteDev(key) {
                 this.$notice.confirm({
-                    title: '温馨提示',
                     message: '删除后记录将消失，是否删除?',
                     okTitle: '是',
                     cancelTitle: '否',

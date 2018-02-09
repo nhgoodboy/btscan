@@ -90,7 +90,7 @@
 
             deleteCheckedDevices(item, key){
                 this.$notice.confirm({
-                    title: '温馨提示',
+
                     message: '是否确认删除？',
                     okTitle: '是',
                     cancelTitle: '否',
@@ -124,7 +124,7 @@
                     this.$event.emit('hadCommitTask');   //给清点页面发送停止搜寻信号
 
                     this.$notice.alert({
-                        title: '温馨提示',
+
                         message: '本次任务已提交',
                         okTitle: '返回首页',
                         callback() {
