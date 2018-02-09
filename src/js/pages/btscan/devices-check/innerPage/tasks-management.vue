@@ -31,6 +31,7 @@
 
 
         <div class="button-box" @click="commit()">
+            <text class="commit-icon colorWhite">&#xe645;</text>
             <text class="text-normal colorWhite">确认提交</text>
         </div>
     </div>

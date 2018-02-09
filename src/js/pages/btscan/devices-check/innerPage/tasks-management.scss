@@ -82,8 +82,15 @@
   background-color: $base-color;
   justify-content: center;
   align-items: center;
+  flex-direction: row;
 }
 
 .button-box:active {
   background-color: $deep-base-color;
+}
+
+.commit-icon {
+  font-family: btscanIcon;
+  font-size: $font-size-big;
+  margin-right: 10px;
 }
