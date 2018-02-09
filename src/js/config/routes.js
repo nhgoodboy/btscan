@@ -38,27 +38,6 @@ export default {
         url: '/pages/btscan/about/about.js',
     },
 
-    'index':{
-        url: '/pages/btscan/index/index.js',
-    },
-
-    'iBeacon.history-results':{
-        // title: '历史结果',
-        url: '/pages/btscan/history-results/history-results.js',
-    },
-    'iBeacon.manage-devices':{
-        // title: '设备管理',
-        url:"/pages/btscan/manage-devices/manage-devices.js",
-    },
-    'iBeacon.detail-list':{
-        // title: '详细列表',
-        url:"/pages/btscan/detail-list/detail-list.js",
-    },
-    'test':{
-        // title: '测试页',
-        url:"/pages/btscan/index/test.js",
-    },
-
     //original
     'demo': {
         title: 'weex-eros demo',

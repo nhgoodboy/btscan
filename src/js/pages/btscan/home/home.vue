@@ -8,7 +8,6 @@
             <buttonItem title="设备管理" icon="&#xe64e;" @click.native="goTo('devices-management')"></buttonItem>
             <buttonItem title="历史记录" icon="&#xe609;" @click.native="goTo('history-records')"></buttonItem>
             <buttonItem title="关于" icon="&#xe677;" @click.native="goTo('about')"></buttonItem>
-            <buttonItem title="index" @click.native="goTo('index')"></buttonItem>
         </div>
     </div>
 

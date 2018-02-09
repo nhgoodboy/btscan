@@ -11,12 +11,6 @@ module.exports = {
         "js/pages/btscan/history-records/innerPage/detail-list.vue",
         "js/pages/btscan/about/about.vue",
 
-        "js/pages/btscan/index/test.js",
-        "js/pages/btscan/index/index.vue",
-        "js/pages/btscan/history-results/history-results.vue",
-        "js/pages/btscan/manage-devices/manage-devices.vue",
-        "js/pages/btscan/detail-list/detail-list.vue",
-
         // appBoard
         'js/config/index.js',
         // mediator
