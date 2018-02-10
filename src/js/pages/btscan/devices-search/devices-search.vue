@@ -102,11 +102,10 @@
             },
 
             startScan() {
-                this.$event.emit('startAnimation', true);
-
                 scanUtil.checkBluetooth((isTrue) => {
                     if(isTrue){
                         this.scanButtonStatus = false;
+                        this.$event.emit('startAnimation', true);
 
                         if(this.simulation) {
                             let tempMap = {};
