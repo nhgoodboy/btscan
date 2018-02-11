@@ -1,5 +1,15 @@
-
+@import "../../../css/btscanBase";
 
 .box {
+  margin-top: 200px;
+}
 
+.text-box {
+  flex-direction: row;
+  height: 120px;
+  margin-left: 150px;
+  margin-right: 150px;
+  align-items: center;
+  border-bottom-width: 3px;
+  border-bottom-color: $base-gray;
 }
