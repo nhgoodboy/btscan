@@ -8,8 +8,8 @@ import routes from './routes'
 let domModule = weex.requireModule("dom");
 domModule.addRule('fontFace', {
     'fontFamily': "btscanIcon",
-    // 'src': "url('bmlocal://iconfont/iconfont.ttf')"
-    'src': "url('//at.alicdn.com/t/font_467356_eyy7p5i3hypq4cxr.ttf')"
+    'src': "url('bmlocal://iconfont/iconfont.ttf')"
+    // 'src': "url('//at.alicdn.com/t/font_467356_eyy7p5i3hypq4cxr.ttf')"
 });
 
 new Widget({
