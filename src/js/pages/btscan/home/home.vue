@@ -1,13 +1,16 @@
 <template>
-    <div>
-        <text class="title">室内设备管理</text>
 
-        <div class="buttons">
-            <buttonItem title="设备清点" icon="&#xe603;" @buttonClick="goTo"></buttonItem>
-            <buttonItem title="设备搜寻" icon="&#xe960;" @buttonClick="goTo"></buttonItem>
-            <buttonItem title="设备管理" icon="&#xe64e;" @buttonClick="goTo"></buttonItem>
-            <buttonItem title="历史记录" icon="&#xe609;" @buttonClick="goTo"></buttonItem>
-            <buttonItem title="关于" icon="&#xe677;" @buttonClick="goTo"></buttonItem>
+    <div>
+        <image style="width:750px;" :style="{height:realHeight}" src="bmlocal://assets/background.jpg"></image>
+        <div class="div1">
+            <text class="title">仓储设备管理</text>
+            <div class="buttons">
+                <buttonItem title="设备清点" icon="&#xe603;" @buttonClick="goTo"></buttonItem>
+                <buttonItem title="设备搜寻" icon="&#xe960;" @buttonClick="goTo"></buttonItem>
+                <buttonItem title="设备管理" icon="&#xe64e;" @buttonClick="goTo"></buttonItem>
+                <buttonItem title="历史记录" icon="&#xe609;" @buttonClick="goTo"></buttonItem>
+                <buttonItem title="关于" icon="&#xe677;" @buttonClick="goTo"></buttonItem>
+            </div>
         </div>
     </div>
 
@@ -17,12 +20,12 @@
     if (process.env.NODE_ENV === 'development') require('Config');
 
     import buttonItem from './components/buttonItem';
-    import { goTo } from "../utils/utils";
+    import {goTo} from "../utils/utils";
 
     export default {
         data() {
             return {
-
+                realHeight: 0
             }
         },
 
@@ -31,7 +34,8 @@
         },
 
         mounted() {
-
+            this.realHeight = weex.config.eros.realDeviceHeight;
+            this.$notice.toast(this.realHeight);
         },
 
         methods: {
