@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <image style="width:750px;" :style="{height:realHeight}" src="bmlocal://assets/background.jpg"></image>
+        <image class="image" :style="{height:realHeight}" src="bmlocal://assets/background.jpg"></image>
         <div class="div1">
             <text class="title">仓储设备管理</text>
             <div class="buttons">
@@ -35,7 +35,7 @@
 
         mounted() {
             this.realHeight = weex.config.eros.realDeviceHeight;
-            this.$notice.toast(this.realHeight);
+            // this.$notice.toast(this.realHeight);
         },
 
         methods: {
